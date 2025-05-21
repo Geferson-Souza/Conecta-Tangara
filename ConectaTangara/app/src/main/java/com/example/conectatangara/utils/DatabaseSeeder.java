@@ -19,13 +19,17 @@ public class DatabaseSeeder {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        if (currentUser == null) {
-            Log.e(TAG, "Nenhum usuário autenticado. Faça login antes de rodar o seeder.");
-            return;
-        }
+        String uid = (currentUser != null) ? currentUser.getUid() : "test_user_id";
 
+        if (currentUser == null) {
+            Log.w(TAG, "Nenhum usuário autenticado. Usando UID de teste para o seeder: " + uid);
+        } else {
+            Log.d(TAG, "Usando UID autenticado para o seeder: " + uid);
+        }
+        // Caso for precisar popular novamente, retirar linhas abaixo para popular sem login necessario.
         String uid = currentUser.getUid();
         Log.d(TAG, "Usando UID autenticado: " + uid);
+
 
         seedUsers(db, uid);
         seedOccurrenceCategories(db);

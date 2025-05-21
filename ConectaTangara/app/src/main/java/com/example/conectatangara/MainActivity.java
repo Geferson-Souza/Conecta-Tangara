@@ -44,7 +44,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Chamar o Seeder - apenas enquanto estiver em desenvolvimento/testes
         // Certifique-se de que DatabaseSeeder.seedDatabase() não execute em produção
-        DatabaseSeeder.seedDatabase();
+        boolean ENABLE_SEEDER = false; // <- Mude para false para desativar
+
+        if (ENABLE_SEEDER) {
+            DatabaseSeeder.seedDatabase();
+        }   // use código acima somente em produção - se quiser popular o DataBase com o arquivo DatabaseSeeder.java
 
         mAuth = FirebaseAuth.getInstance();
 
