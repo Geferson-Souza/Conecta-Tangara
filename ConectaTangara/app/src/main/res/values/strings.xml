@@ -6,4 +6,6 @@
     <string name="password_hint">Digite sua Senha</string>
     <string name="titulo_tela">Bem-vindo</string>
     <string name="default_web_client_id">SEU_CLIENT_ID</string>
+    <string name="popular_firestore">Popular Firestore</string>
+    <string name="login_com_google">Login com Google</string>
 </resources>
