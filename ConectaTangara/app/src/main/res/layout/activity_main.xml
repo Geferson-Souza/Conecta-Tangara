@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#042A2B"
+    tools:context="com.example.conectatangara.MainActivity">
+
+    <!-- Conteúdo central com peso 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#99D5C9"
+            android:layout_marginBottom="32dp" />
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email_hint"
+            android:inputType="textEmailAddress"
+            android:textColorHint="#99D5C9"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="16dp"
+            android:padding="12dp"
+            android:background="@drawable/edit_text_background"
+            android:autofillHints="emailAddress" />
+
+        <EditText
+            android:id="@+id/editTextSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password_hint"
+            android:inputType="textPassword"
+            android:textColorHint="#99D5C9"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:background="@drawable/edit_text_background"
+            android:autofillHints="password" />
+
+        <Button
+            android:id="@+id/buttonLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_button"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_primary"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/buttonRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register_button"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_secondary" />
+
+        <Button
+                android:id="@+id/btnSeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Popular Firestore"
+                android:layout_marginTop="32dp"/>
+
+
+    </LinearLayout>
+
+    <!-- Botão do Google fixado no rodapé -->
+    <ImageButton
+        android:id="@+id/buttonGoogle"
+        android:layout_width="220dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="76dp"
+        android:background="@null"
+        android:contentDescription="Login com Google"
+        android:src="@drawable/google_signin_button"
+        android:scaleType="fitCenter" />
+
+</LinearLayout>

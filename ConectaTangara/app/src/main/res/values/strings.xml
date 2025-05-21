@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Conecta Tangara</string>
+    <string name="login_button">Entrar</string>
+    <string name="register_button">Cadastrar</string>
+    <string name="email_hint">Digite seu email</string>
+    <string name="password_hint">Digite sua Senha</string>
+    <string name="titulo_tela">Bem-vindo</string>
+    <string name="default_web_client_id">SEU_CLIENT_ID</string>
+</resources>

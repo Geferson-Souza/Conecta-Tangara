@@ -1,0 +1,9 @@
+<resources>
+    <color name="azul_petroleo">#042A2B</color>
+    <color name="verde_agua">#99D5C9</color>
+    <color name="bege_claro">#ECE2D0</color>
+    <color name="rosa_seco">#775B59</color>
+    <color name="vinho">#32161F</color>
+    <color name="branco">#FFFFFF</color>
+    <color name="preto">#000000</color>
+</resources>

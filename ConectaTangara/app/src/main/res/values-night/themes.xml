@@ -1,0 +1,31 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.ConectaTangara" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/azul_petroleo</item>
+        <item name="colorPrimaryVariant">@color/vinho</item>
+        <item name="colorOnPrimary">@color/branco</item>
+
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/verde_agua</item>
+        <item name="colorSecondaryVariant">@color/rosa_seco</item>
+        <item name="colorOnSecondary">@color/preto</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/vinho</item>
+
+        <!-- Backgrounds, surfaces, etc -->
+        <item name="android:windowBackground">@color/azul_petroleo</item>
+
+        <!-- Button default background -->
+        <item name="materialButtonStyle">@style/Widget.ConectaTangara.Button</item>
+    </style>
+
+    <!-- Custom button style -->
+    <style name="Widget.ConectaTangara.Button" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/verde_agua</item>
+        <item name="android:textColor">@color/preto</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+</resources>
