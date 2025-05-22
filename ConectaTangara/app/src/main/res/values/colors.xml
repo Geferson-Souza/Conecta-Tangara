@@ -5,7 +5,7 @@
     <color name="non_photo_blue">#A8DADC</color>
     <color name="cerulean">#457B9D</color>
     <color name="berkeley_blue">#1D3557</color>
-
+    <color name="slightly_lighter_berkeley_blue">#264065</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 </resources>
