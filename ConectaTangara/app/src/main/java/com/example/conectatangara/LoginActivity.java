@@ -22,12 +22,11 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import com.example.conectatangara.utils.DatabaseSeeder;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private EditText editTextEmail, editTextSenha;
     private Button buttonLogin, buttonRegister;
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         // Chamar o Seeder - apenas enquanto estiver em desenvolvimento/testes
         // Certifique-se de que DatabaseSeeder.seedDatabase() não execute em produção
@@ -163,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         // FirebaseUser user = mAuth.getCurrentUser(); // Não é estritamente necessário
-                        Toast.makeText(MainActivity.this, "Login com Google realizado!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Login com Google realizado!", Toast.LENGTH_SHORT).show();
                         // TODO: Redirecionar usuário para a tela principal
                     } else {
                         // Task.getException() pode ser nulo ou retornar diferentes tipos de exceções
@@ -171,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                         if (task.getException() != null) {
                             errorMessage += " " + task.getException().getMessage();
                         }
-                        Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
