@@ -8,4 +8,5 @@
     <string name="default_web_client_id">SEU_CLIENT_ID</string>
     <string name="popular_firestore">Popular Firestore</string>
     <string name="login_com_google">Login com Google</string>
+    <string name="abreviacao_app_name">CT</string>
 </resources>

@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 // A importação de R.java não é necessária na maioria dos casos no Android Studio
-// import com.example.conectatangara.R;
+// import com.example.com.com.conectatangara.R;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.conectatangara"
+    namespace = "com.example.com.com.conectatangara"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.conectatangara"
+        applicationId = "com.example.com.com.conectatangara"
         minSdk = 28
         targetSdk = 35
         versionCode = 1
