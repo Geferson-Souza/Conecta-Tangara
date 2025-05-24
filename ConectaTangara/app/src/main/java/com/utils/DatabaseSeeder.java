@@ -1,4 +1,4 @@
-package com.example.conectatangara.utils;
+package com.utils;
 
 import android.util.Log;
 
@@ -19,6 +19,8 @@ public class DatabaseSeeder {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
+        // Esta é a única declaração e inicialização de 'uid' necessária aqui.
+        // Ela já lida com o caso de não haver usuário logado.
         String uid = (currentUser != null) ? currentUser.getUid() : "test_user_id";
 
         if (currentUser == null) {
@@ -26,11 +28,14 @@ public class DatabaseSeeder {
         } else {
             Log.d(TAG, "Usando UID autenticado para o seeder: " + uid);
         }
-        // Caso for precisar popular novamente, retirar linhas abaixo para popular sem login necessario.
-        String uid = currentUser.getUid();
-        Log.d(TAG, "Usando UID autenticado: " + uid);
+
+        // O comentário abaixo e as linhas problemáticas foram removidas.
+        // Caso for precisar popular novamente, retirar barras de comentario no incio das linhas para popular sem login necessario.
+        // String uid = currentUser.getUid(); // REMOVIDO
+        // Log.d(TAG, "Usando UID autenticado: " + uid); // REMOVIDO
 
 
+        // Todas as chamadas abaixo usarão a variável 'uid' definida e verificada acima.
         seedUsers(db, uid);
         seedOccurrenceCategories(db);
         seedOccurrences(db, uid);

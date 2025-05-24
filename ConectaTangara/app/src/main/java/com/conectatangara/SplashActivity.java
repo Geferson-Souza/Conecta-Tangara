@@ -1,4 +1,4 @@
-package com.example.conectatangara; // Substitua pelo seu nome de pacote
+package com.conectatangara; // Substitua pelo seu nome de pacote
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,7 +33,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                // Este método será executado uma vez após o SPLASH_TIMEOUT
+                // Este metodo será executado uma vez após o SPLASH_TIMEOUT
                 // Inicie sua Activity principal (ou LoginActivity) aqui
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class); // Mude para MainActivity se o login não for a primeira tela após splash
                 startActivity(intent);

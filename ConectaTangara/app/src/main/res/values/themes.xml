@@ -1,15 +1,27 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.ConectaTangara" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/cerulean</item> <item name="colorPrimaryVariant">@color/berkeley_blue</item> <item name="colorOnPrimary">@color/white</item> <item name="colorSecondary">@color/red_pantone</item> <item name="colorSecondaryVariant">@color/red_pantone</item> <item name="colorOnSecondary">@color/white</item> <item name="android:statusBarColor">@color/berkeley_blue</item>
+        <item name="colorPrimary">@color/cerulean</item>
+        <item name="colorPrimaryVariant">@color/berkeley_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/red_pantone</item>
+        <item name="colorSecondaryVariant">@color/red_pantone</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:statusBarColor">@color/berkeley_blue</item>
 
         <item name="android:windowBackground">@color/honeydew</item>
-        <item name="colorSurface">@color/white</item> <item name="colorOnSurface">@color/berkeley_blue</item> <item name="colorError">@color/red_pantone</item> <item name="colorOnError">@color/white</item> <item name="materialButtonStyle">@style/Widget.ConectaTangara.Button</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/berkeley_blue</item>
+        <item name="colorError">@color/red_pantone</item>
+        <item name="colorOnError">@color/white</item>
+        <item name="materialButtonStyle">@style/Widget.ConectaTangara.Button</item>
 
     </style>
 
     <style name="Widget.ConectaTangara.Button" parent="Widget.Material3.Button">
         <item name="backgroundTint">@color/cerulean</item>
-        <item name="android:textColor">@color/white</item> <item name="cornerRadius">24dp</item> <item name="android:paddingTop">12dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
         <item name="android:elevation">2dp</item> </style>
 
@@ -22,8 +34,11 @@
     </style>
 
     <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">@color/cerulean</item> <item name="hintTextColor">@color/cerulean</item> <item name="boxBackgroundColor">@color/white</item>
-        <item name="android:textColorHint">@color/cerulean</item> <item name="endIconTint">@color/cerulean</item>
+        <item name="boxStrokeColor">@color/cerulean</item>
+        <item name="hintTextColor">@color/cerulean</item>
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="android:textColorHint">@color/cerulean</item>
+        <item name="endIconTint">@color/cerulean</item>
     </style>
 
 </resources>

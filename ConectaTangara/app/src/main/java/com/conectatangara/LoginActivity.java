@@ -1,10 +1,10 @@
-package com.example.conectatangara;
+package com.conectatangara;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton; // << Adicionado este import
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 
@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 // A importação de R.java não é necessária na maioria dos casos no Android Studio
-// import com.example.com.com.conectatangara.R;
+// import com.conectatangara.R;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -23,8 +23,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
-
-import com.example.conectatangara.utils.DatabaseSeeder;
+import com.utils.DatabaseSeeder;
 
 public class LoginActivity extends AppCompatActivity {
 
