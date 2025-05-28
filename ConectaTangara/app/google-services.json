@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:317387036505:android:fa0312224717aad2a01e48",
         "android_client_info": {
-          "package_name": "com.example.conectatangara"
+          "package_name": "com.conectatangara"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "317387036505-lie78m5vph0okg71ugj59vokh80r96i2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.conectatangara",
+            "package_name": "com.conectatangara",
             "certificate_hash": "c55a3d0595b8d881838f18059936fd464f56699a"
           }
         },

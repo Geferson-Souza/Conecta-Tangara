@@ -94,7 +94,12 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // FirebaseUser user = mAuth.getCurrentUser(); // Não é estritamente necessário se não for usar a info do user aqui
                         Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
-                        // TODO: Redirecionar usuário para a tela principal ou de perfil
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        // Adiciona flags para limpar a pilha de activities anteriores,
+                        // assim o usuário não volta para a tela de login ao pressionar "Voltar".
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish(); // Finaliza a LoginActivity
                     } else {
                         // Task.getException() pode ser nulo ou retornar diferentes tipos de exceções
                         String errorMessage = "Erro ao cadastrar.";
@@ -120,7 +125,12 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // FirebaseUser user = mAuth.getCurrentUser(); // Não é estritamente necessário se não for usar a info do user aqui
                         Toast.makeText(this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
-                        // TODO: Redirecionar usuário para a tela principal
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        // Adiciona flags para limpar a pilha de activities anteriores,
+                        // assim o usuário não volta para a tela de login ao pressionar "Voltar".
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish(); // Finaliza a LoginActivity
                     } else {
                         // Task.getException() pode ser nulo ou retornar diferentes tipos de exceções
                         String errorMessage = "Erro ao fazer login.";
@@ -162,7 +172,12 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // FirebaseUser user = mAuth.getCurrentUser(); // Não é estritamente necessário
                         Toast.makeText(LoginActivity.this, "Login com Google realizado!", Toast.LENGTH_SHORT).show();
-                        // TODO: Redirecionar usuário para a tela principal
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        // Adiciona flags para limpar a pilha de activities anteriores,
+                        // assim o usuário não volta para a tela de login ao pressionar "Voltar".
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish(); // Finaliza a LoginActivity
                     } else {
                         // Task.getException() pode ser nulo ou retornar diferentes tipos de exceções
                         String errorMessage = "Erro na autenticação com Google.";

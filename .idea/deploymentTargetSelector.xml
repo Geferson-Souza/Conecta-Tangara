@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="Conecta_Tangara.app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-05-21T05:29:59.891627400Z">
+        <DropdownSelection timestamp="2025-05-27T19:28:11.641256Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\usuario\.android\avd\Small_Phone.avd" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\usuario\.android\avd\Medium_Phone_2.avd" />
             </handle>
           </Target>
         </DropdownSelection>
