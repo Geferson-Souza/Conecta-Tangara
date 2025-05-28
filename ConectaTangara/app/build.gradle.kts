@@ -40,7 +40,7 @@ android {
 // Bloco dependencies corrigido (sem aninhamento)
 dependencies {
     // Firebase BoM (Bill of Materials) - Certifique-se de usar a versão mais recente estável
-    implementation(platform("com.google.firebase:firebase-bom:33.0.0")) // <--- VERSÃO AJUSTADA (exemplo)
+    implementation(platform("com.google.firebase:firebase-bom:33.14.0")) // <--- VERSÃO AJUSTADA (exemplo)
 
     // Firebase Authentication (usando a forma do Version Catalog, se definida)
     implementation(libs.firebase.auth) // Removida a declaração direta duplicada
