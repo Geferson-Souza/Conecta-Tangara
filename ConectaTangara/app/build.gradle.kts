@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application) // Certifique-se que libs.plugins.android.application está definido no seu version catalog (libs.versions.toml)
     // Add the Google services Gradle plugin
     id("com.google.gms.google-services")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -57,7 +58,8 @@ dependencies {
     implementation(libs.material)
     // implementation("androidx.core:core-ktx:1.13.1") // Exemplo de como seria sem o catalog, adicione se necessário
     // implementation("androidx.constraintlayout:constraintlayout:2.1.4") // Exemplo, adicione se necessário
-
+    // Dependêmcias do Google maps
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

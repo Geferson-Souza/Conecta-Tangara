@@ -2,6 +2,9 @@
           xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
             android:allowBackup="true"
             android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +16,10 @@
             android:theme="@style/Theme.ConectaTangara"
             tools:targetApi="31">
 
+        <meta-data
+                android:name="com.google.android.geo.API_KEY"
+                android:value="${MAPS_API_KEY}" />
+
         <activity
                 android:name=".LoginActivity"
                 android:exported="true">
@@ -23,9 +30,29 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+                android:name=".MainActivity"
+                android:exported="true">
+            <!-- Se a MainActivity for a tela que exibirá o mapa,
+                 certifique-se de que ela esteja configurada para isso. -->
         </activity>
+
+        <!--
+        Opcional: Para versões mais recentes do SDK do Maps (v3.1.0-beta+) e Android 12+ (API 31+),
+        pode ser necessário adicionar a seguinte declaração de serviço do Google Play.
+        Verifique a documentação oficial se encontrar problemas no carregamento do mapa.
+        <service
+            android:name="com.google.android.gms.metadata.ModuleDependencies"
+            android:enabled="true"
+            android:exported="false"
+            tools:ignore="MissingClass">
+            <intent-filter>
+                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
+            </intent-filter>
+            <meta-data
+                android:name="photopicker_activity:0:required"
+                android:value="" />
+        </service>
+        -->
 
     </application>
 

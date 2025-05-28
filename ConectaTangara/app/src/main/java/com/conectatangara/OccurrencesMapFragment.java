@@ -17,7 +17,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 // Import da Classe R do SEU projeto
-import com.conectatangara.R;
+
 
 /**
  * Fragmento para exibir o mapa interativo de ocorrências.
@@ -37,7 +37,7 @@ public class OccurrencesMapFragment extends Fragment implements OnMapReadyCallba
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         // Infla o layout para este fragmento
-        return inflater.inflate(R.layout.fragment_occurrences_map, container, false);
+        return inflater.inflate(R.layout.fragment_public_occurrences, container, false);
     }
 
     @Override
