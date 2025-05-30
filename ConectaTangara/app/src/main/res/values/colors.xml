@@ -9,4 +9,7 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="green_status">#ED4AC157</color>
+    <color name="gradientstart">#A8DADC</color>
+    <color name="gradientmiddle">#F1FAEE</color>
+    <color name="gradientend">#457B9D</color>
 </resources>

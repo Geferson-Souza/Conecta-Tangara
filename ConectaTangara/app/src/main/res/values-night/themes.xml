@@ -1,8 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.ConectaTangara" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/cerulean</item>
-        <item name="colorPrimaryVariant">@color/cerulean</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/cerulean</item> <item name="colorPrimaryVariant">@color/berkeley_blue</item> <item name="colorOnPrimary">@color/white</item>
         <item name="colorSecondary">@color/red_pantone</item>
         <item name="colorSecondaryVariant">@color/red_pantone</item>
         <item name="colorOnSecondary">@color/white</item>
@@ -17,7 +15,8 @@
         <item name="materialButtonStyle">@style/Widget.ConectaTangara.Button.Night</item>
         <item name="android:textColorPrimary">@color/honeydew</item>
         <item name="android:textColorSecondary">@color/non_photo_blue</item>
-        <item name="colorOutline">@color/cerulean</item> </style>
+        <item name="colorOutline">@color/cerulean</item>
+    </style>
 
     <style name="Widget.ConectaTangara.Button.Night" parent="Widget.Material3.Button">
         <item name="backgroundTint">@color/cerulean</item>
@@ -36,11 +35,19 @@
         <item name="android:paddingBottom">12dp</item>
     </style>
 
-    <style name="LoginTextInputLayoutStyle.Night" parent="Widget.Material3.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">@color/cerulean</item>
+    <style name="LoginTextInputLayoutStyle.Night" parent="Widget.Material3.TextInputLayout.OutlinedBox"> <item name="boxStrokeColor">@color/cerulean</item>
         <item name="hintTextColor">@color/non_photo_blue</item>
         <item name="android:textColorHint">@color/non_photo_blue</item>
         <item name="endIconTint">@color/non_photo_blue</item>
+    </style>
+
+    <style name="Theme.ConectaTangara.NoActionBar" parent="Theme.ConectaTangara">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.ConectaTangara.FullScreen" parent="Theme.ConectaTangara.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
     </style>
 
 </resources>

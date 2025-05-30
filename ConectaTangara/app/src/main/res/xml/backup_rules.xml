@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Defina aqui o que deve ser incluído no backup completo.
+         Por padrão, a maioria dos dados do app é incluída.
+         Você pode usar <include> e <exclude> para especificar domínios e caminhos.
+         Exemplo:
+         <exclude domain="database" path="my_temp_db.db"/>
+         <include domain="sharedpref" path="."/>
+    -->
+</full-backup-content>

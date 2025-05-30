@@ -1,4 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Conecta Tangará</string>
+    <string name="abreviacao_app_name">CT</string>
+    <string name="logo_conecta_tangara_description">Logo do Conecta Tangará</string>
+
+    <string name="login_button">Entrar</string>
+    <string name="register_button">Cadastrar</string>
+    <string name="email_hint">Digite seu email</string>
+    <string name="password_hint">Digite sua senha</string>
     <string name="login_com_google">Login com Google</string>
+    <string name="default_web_client_id" translatable="false">SEU_CLIENT_ID</string>
+
+    <string name="prompt_select_category">Selecione uma categoria</string>
+    <string-array name="occurrence_categories">
+        <item>@string/prompt_select_category</item>
+        <item>Buraco na Via</item>
+        <item>Lâmpada Queimada/Defeito na Iluminação</item>
+        <item>Lixo Acumulado/Problema na Coleta</item>
+        <item>Vazamento de Água ou Esgoto</item>
+        <item>Semáforo com Defeito/Problema de Sinalização</item>
+        <item>Calçada Irregular ou Obstruída</item>
+        <item>Problema em Ponto de Ônibus</item>
+        <item>Problema no Transporte Público</item>
+        <item>Falta de Medicamentos/Problema em Posto de Saúde</item>
+        <item>Outros Assuntos</item>
+    </string-array>
+    <string name="hint_occurrence_title">Título da Ocorrência</string>
+    <string name="hint_occurrence_description">Descrição Detalhada</string>
+    <string name="label_occurrence_category">Categoria da Ocorrência:</string>
+    <string name="label_occurrence_location">Localização da Ocorrência</string>
+    <string name="button_use_current_location">Usar Localização Atual</string>
+    <string name="map_preview_description">Pré-visualização do mapa</string>
+    <string name="label_attach_media">Anexar Fotos/Vídeos</string>
+    <string name="button_add_media">Adicionar Mídia</string>
+    <string name="button_submit_occurrence">Registrar Ocorrência</string>
+    <string name="toolbar_title_report_occurrence">Registrar Ocorrência</string>
+
+    <string name="onboarding_title_1">Bem-vindo ao Conecta Tangará!</string>
+    <string name="onboarding_description_1">Sua voz conectada diretamente com a gestão da cidade.</string>
+    <string name="onboarding_image_desc_1">Ilustração da primeira tela de onboarding</string>
+
+    <string name="onboarding_title_2">Registre Ocorrências</string>
+    <string name="onboarding_description_2">Reporte problemas de infraestrutura e serviços de forma fácil e rápida.</string>
+    <string name="onboarding_image_desc_2">Ilustração da segunda tela de onboarding</string>
+
+    <string name="onboarding_title_3">Acompanhe e Participe</string>
+    <string name="onboarding_description_3">Veja o andamento das solicitações e colabore para uma Tangará melhor.</string>
+    <string name="onboarding_image_desc_3">Ilustração da terceira tela de onboarding</string>
+
+    <string name="onboarding_button_next">Avançar</string>
+    <string name="onboarding_button_skip">Pular</string>
+    <string name="onboarding_button_finish">Concluir</string>
+
+    <string name="titulo_tela">Bem-vindo</string>
+    <string name="popular_firestore">Popular Firestore</string>
 </resources>

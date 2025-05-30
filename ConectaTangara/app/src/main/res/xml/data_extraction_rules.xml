@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <cloud-backup disableIfNoEncryptionCapabilities="true">
+        <!-- Defina aqui quais arquivos/pastas devem ser incluídos/excluídos do backup.
+             Por padrão, a maioria dos dados do app é incluída.
+             Exemplo para excluir shared_prefs:
+             <exclude domain="sharedpref" path="."/>
+             Exemplo para incluir um arquivo específico:
+             <include domain="file" path="my_important_data.txt"/>
+        -->
+    </cloud-backup>
+    <device-transfer>
+        <!-- Defina aqui as regras para transferência de dispositivo para dispositivo.
+             <include domain="sharedpref" path="."/>
+        -->
+    </device-transfer>
+</data-extraction-rules>

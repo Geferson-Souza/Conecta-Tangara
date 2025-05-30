@@ -60,6 +60,8 @@ dependencies {
     // implementation("androidx.constraintlayout:constraintlayout:2.1.4") // Exemplo, adicione se necessário
     // Dependêmcias do Google maps
     implementation("com.google.android.gms:play-services-maps:18.2.0")
+    // Google Play Services Location
+    implementation("com.google.android.gms:play-services-location:21.3.0") // Verifique a versão mais recente
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

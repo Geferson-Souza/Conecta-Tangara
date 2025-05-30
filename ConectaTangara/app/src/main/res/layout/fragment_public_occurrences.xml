@@ -74,7 +74,9 @@
                             android:text="Novas"
                             app:chipBackgroundColor="@color/chip_filter_background_selector"
                             android:textColor="@color/chip_filter_text_selector"
-                            app:chipIcon="@drawable/ic_marker_red_pantone_circle" /> <com.google.android.material.chip.Chip
+                            app:chipIcon="@drawable/ic_marker_red_pantone_circle" />
+
+                    <com.google.android.material.chip.Chip
                         android:id="@+id/chip_status_in_progress"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
@@ -82,7 +84,9 @@
                         android:text="Em Andamento"
                         app:chipBackgroundColor="@color/chip_filter_background_selector"
                         android:textColor="@color/chip_filter_text_selector"
-                        app:chipIcon="@drawable/ic_marker_cerulean_circle" /> <com.google.android.material.chip.Chip
+                        app:chipIcon="@drawable/ic_marker_cerulean_circle" />
+
+                    <com.google.android.material.chip.Chip
                         android:id="@+id/chip_status_resolved"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
@@ -90,7 +94,9 @@
                         android:text="Resolvidas"
                         app:chipBackgroundColor="@color/chip_filter_background_selector"
                         android:textColor="@color/chip_filter_text_selector"
-                        app:chipIcon="@drawable/ic_marker_green_status_circle" /> </com.google.android.material.chip.ChipGroup>
+                        app:chipIcon="@drawable/ic_marker_green_status_circle" />
+
+                </com.google.android.material.chip.ChipGroup>
 
                 <Spinner
                         android:id="@+id/spinner_occurrence_type_map"
