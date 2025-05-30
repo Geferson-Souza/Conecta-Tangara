@@ -1,4 +1,4 @@
-package com.conectatangara;
+package com.conectatangara.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import com.conectatangara.R;
 
 public class SplashActivity extends AppCompatActivity {
 

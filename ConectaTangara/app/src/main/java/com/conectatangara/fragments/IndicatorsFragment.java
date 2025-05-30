@@ -1,5 +1,5 @@
 // Se for Java
-package com.conectatangara; // ou o pacote correto
+package com.conectatangara.fragments; // ou o pacote correto
 
 // Imports Essenciais do Android e AndroidX
 import android.os.Bundle; // <-- ADICIONADO: Import para Bundle

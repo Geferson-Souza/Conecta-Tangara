@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/honeydew"
-        tools:context=".IndicatorsFragment">
+        tools:context=".fragments.IndicatorsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"

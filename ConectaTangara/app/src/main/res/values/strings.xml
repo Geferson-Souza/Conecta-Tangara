@@ -12,7 +12,8 @@
 
     <string name="toolbar_title_report_occurrence">Registrar Ocorrência</string>
     <string name="hint_occurrence_title">Título da Ocorrência</string>
-    <string name="hint_occurrence_description">Descrição Detalhada (o que, onde, quando)</string> <string name="label_occurrence_category">Categoria da Ocorrência:</string>
+    <string name="hint_occurrence_description">Descrição Detalhada (o que, onde, quando)</string>
+    <string name="label_occurrence_category">Categoria da Ocorrência:</string>
     <string name="prompt_select_category">Selecione uma categoria</string>
     <string-array name="occurrence_categories">
         <item>@string/prompt_select_category</item>
@@ -29,8 +30,11 @@
     </string-array>
     <string name="label_occurrence_location">Localização da Ocorrência</string>
     <string name="button_use_current_location">Usar Localização Atual</string>
-    <string name="map_preview_description">Pré-visualização do mapa da ocorrência</string> <string name="label_attach_media">Anexar Fotos/Vídeos (Opcional)</string> <string name="button_add_media">Adicionar Mídia</string>
-    <string name="media_preview_item_description">Pré-visualização de mídia anexada</string> <string name="button_submit_occurrence">Registrar Ocorrência</string>
+    <string name="map_preview_description">Pré-visualização do mapa da ocorrência</string>
+    <string name="label_attach_media">Anexar Fotos/Vídeos (Opcional)</string>
+    <string name="button_add_media">Adicionar Mídia</string>
+    <string name="media_preview_item_description">Pré-visualização de mídia anexada</string>
+    <string name="remove_selected_media_description">Remover mídia selecionada</string> <string name="button_submit_occurrence">Registrar Ocorrência</string>
 
     <string name="message_fill_required_fields">Por favor, preencha todos os campos obrigatórios.</string>
     <string name="message_define_location">Por favor, defina a localização da ocorrência.</string>
@@ -62,4 +66,3 @@
     <string name="titulo_tela">Bem-vindo</string>
     <string name="popular_firestore">Popular Firestore</string>
 </resources>
-

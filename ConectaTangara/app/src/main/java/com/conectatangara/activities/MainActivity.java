@@ -1,7 +1,9 @@
-package com.conectatangara; // Use seu pacote
+package com.conectatangara.activities; // Use seu pacote
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.conectatangara.R;
+import com.conectatangara.fragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
 

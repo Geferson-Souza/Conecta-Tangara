@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/honeydew"
-        tools:context=".OnboardingActivity">
+        tools:context=".activities.OnboardingActivity">
 
     <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager_onboarding"

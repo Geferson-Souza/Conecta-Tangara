@@ -1,9 +1,11 @@
-package com.conectatangara; // Ou seu pacote de adapters
+package com.conectatangara.adapters; // Ou seu pacote de adapters
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+import com.conectatangara.R;
+import com.conectatangara.fragments.OnboardingFragment;
 
 public class OnboardingAdapter extends FragmentStateAdapter {
 

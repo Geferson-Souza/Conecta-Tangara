@@ -1,4 +1,4 @@
-package com.conectatangara; // Ou o pacote correto (ex: com.conectatangara.map)
+package com.conectatangara.fragments; // Ou o pacote correto (ex: com.conectatangara.map)
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.conectatangara.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

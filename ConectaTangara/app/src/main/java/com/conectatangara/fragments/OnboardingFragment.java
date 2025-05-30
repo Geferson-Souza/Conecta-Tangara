@@ -1,4 +1,4 @@
-package com.conectatangara; // Ou seu pacote de fragments
+package com.conectatangara.fragments; // Ou seu pacote de fragments
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.conectatangara.R;
 
 public class OnboardingFragment extends Fragment {
 

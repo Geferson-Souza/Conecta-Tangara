@@ -54,6 +54,8 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:21.3.0") // Verifique a versão mais recente compatível
 
     // Outras libs (usando Version Catalog)
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    // annotationProcessor("com.github.bumptech.glide:compiler:4.12.0") // Se usar anotações do Glide, mas para este uso básico não é estritamente necessário
     implementation(libs.appcompat)
     implementation(libs.material)
     // implementation("androidx.core:core-ktx:1.13.1") // Exemplo de como seria sem o catalog, adicione se necessário
