@@ -1,15 +1,17 @@
-package com.conectatangara.fragments; // Ou o pacote correto (ex: com.conectatangara.map)
+package com.conectatangara.fragments; // Ou o pacote correto
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+// import android.widget.Toast; // Pode ser útil para debug
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.conectatangara.R;
+import com.conectatangara.activities.MainActivity; // Import para chamar o método da MainActivity
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -17,19 +19,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-// Import da Classe R do SEU projeto
-
-
-/**
- * Fragmento para exibir o mapa interativo de ocorrências.
- */
 public class OccurrencesMapFragment extends Fragment implements OnMapReadyCallback {
 
-    private GoogleMap mMap; // Variável para guardar a referência do Google Map
+    private GoogleMap mMap;
 
-    /**
-     * Construtor padrão obrigatório para Fragments.
-     */
     public OccurrencesMapFragment() {
         // Required empty public constructor
     }
@@ -46,39 +39,49 @@ public class OccurrencesMapFragment extends Fragment implements OnMapReadyCallba
         super.onViewCreated(view, savedInstanceState);
 
         // Obtém o SupportMapFragment e notifica quando o mapa estiver pronto para ser usado.
-        // É importante usar getChildFragmentManager() aqui, pois estamos dentro de um Fragment.
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
-                .findFragmentById(R.id.map_container);
+                .findFragmentById(R.id.map_container); // Certifique-se que este ID existe em fragment_public_occurrences.xml
 
-        // Verifica se o mapFragment foi encontrado antes de chamar getMapAsync
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
 
-        // Aqui você pode adicionar o código para configurar seus filtros (Spinners, Chips)
+        // TODO: Aqui você pode adicionar o código para configurar seus filtros (Spinners, Chips)
         // Ex: ChipGroup chipGroup = view.findViewById(R.id.chip_group_status_map);
+        //     Spinner spinnerType = view.findViewById(R.id.spinner_occurrence_type_map);
     }
 
-    /**
-     * Este método é chamado quando o mapa está pronto para ser usado.
-     * É aqui que você adiciona marcadores, listeners, move a câmera, etc.
-     * @param googleMap A instância do GoogleMap.
-     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Define o título na Toolbar da MainActivity quando este fragmento estiver visível
+        if (getActivity() instanceof MainActivity) {
+            // Crie esta string em strings.xml: <string name="toolbar_title_public_occurrences">Mapa de Ocorrências</string>
+            ((MainActivity) getActivity()).setToolbarTitle(getString(R.string.toolbar_title_public_occurrences));
+        }
+    }
+
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
 
-        // TODO: Implementar a lógica de busca e exibição de ocorrências
+        // TODO: Implementar a lógica de busca e exibição de ocorrências do Firestore
+        // TODO: Aplicar filtros e atualizar marcadores
 
         // Exemplo: Adiciona um marcador em Tangará da Serra e move a câmera
         LatLng tangara = new LatLng(-14.6195, -57.4895); // Coordenadas aproximadas
         mMap.addMarker(new MarkerOptions()
                 .position(tangara)
-                .title("Tangará da Serra"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(tangara, 12f)); // 12f é o nível de zoom
+                .title("Tangará da Serra")); // O título do marcador pode ser o título da ocorrência
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(tangara, 12f));
 
-        // TODO: Configurar listeners de clique nos marcadores
-        // TODO: Configurar a InfoWindow customizada (se necessário)
-        // TODO: Implementar a lógica dos filtros para atualizar os marcadores
+        // Exemplo de como configurar um listener de clique no marcador
+        // mMap.setOnMarkerClickListener(marker -> {
+        //     // Obter o ID da ocorrência associada a este marcador (você pode usar marker.getTag())
+        //     // String occurrenceId = (String) marker.getTag();
+        //     // Navegar para a tela de detalhes da ocorrência ou mostrar uma InfoWindow customizada
+        //     Toast.makeText(getContext(), "Clicou no marcador: " + marker.getTitle(), Toast.LENGTH_SHORT).show();
+        //     return false; // Retorne true se você consumiu o evento e não quer o comportamento padrão (InfoWindow e centralizar)
+        // });
     }
 }

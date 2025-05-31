@@ -34,7 +34,8 @@
     <string name="label_attach_media">Anexar Fotos/Vídeos (Opcional)</string>
     <string name="button_add_media">Adicionar Mídia</string>
     <string name="media_preview_item_description">Pré-visualização de mídia anexada</string>
-    <string name="remove_selected_media_description">Remover mídia selecionada</string> <string name="button_submit_occurrence">Registrar Ocorrência</string>
+    <string name="remove_selected_media_description">Remover mídia selecionada</string>
+    <string name="button_submit_occurrence">Registrar Ocorrência</string>
 
     <string name="message_fill_required_fields">Por favor, preencha todos os campos obrigatórios.</string>
     <string name="message_define_location">Por favor, defina a localização da ocorrência.</string>
@@ -65,4 +66,35 @@
 
     <string name="titulo_tela">Bem-vindo</string>
     <string name="popular_firestore">Popular Firestore</string>
+
+    <string name="toolbar_title_my_occurrences">Minhas Ocorrências</string>
+    <string name="my_occurrences_empty_list">Você ainda não registrou nenhuma ocorrência.</string>
+
+    <string name="occurrence_status_placeholder">Status</string>
+    <string name="occurrence_category_placeholder">Categoria da Ocorrência</string>
+    <string name="occurrence_date_placeholder">dd/mm/aaaa</string>
+    <string name="occurrence_title_placeholder">Título da Ocorrência Aqui</string>
+    <string name="occurrence_description_placeholder">Breve descrição da ocorrência apareceria aqui...</string>
+
+    <string name="status_label_recebida">Recebida</string>
+    <string name="status_label_em_analise">Em Análise</string>
+    <string name="status_label_em_andamento">Em Andamento</string>
+    <string name="status_label_resolvida">Resolvida</string>
+    <string name="status_label_rejeitada">Rejeitada</string>
+    <string name="toolbar_title_indicators">Indicadores</string>
+
+    <string name="shortcut_title_register_occurrence">Registrar Ocorrência</string>
+    <string name="shortcut_title_my_occurrences">Minhas Ocorrências</string>
+    <string name="shortcut_title_view_occurrences">Ver Ocorrências</string>
+    <string name="shortcut_title_services">Serviços</string>
+    <string name="shortcut_title_events">Eventos</string>
+    <string name="shortcut_title_news">Notícias</string>
+    <string name="shortcut_title_public_data">Dados Públicos</string>
+    <string name="menu_title_profile">Perfil</string>
+    <string name="menu_title_notifications">Notificações</string>
+    <string name="toolbar_title_public_occurrences">Mapa de Ocorrências</string>
+    <string name="nav_title_home">Início</string>
+    <string name="nav_title_my_occurrences">Minhas Ocorrências</string>
+    <string name="nav_title_indicators">Indicadores</string>
+    <string name="nav_title_public_map">Mapa de Ocorrências</string>
 </resources>

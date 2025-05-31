@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="4dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginBottom="8dp"
-    app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -19,39 +19,62 @@
             android:padding="16dp">
 
         <TextView
-                android:id="@+id/tv_indicator_name"
+                android:id="@+id/tv_indicator_item_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceHeadline6"
                 android:textColor="@color/berkeley_blue"
-                android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tv_indicator_value"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_indicator_item_value"
                 app:layout_constraintHorizontal_bias="0.0"
-                tools:text="Taxa de Escolarização Infantil" />
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                tools:text="Taxa de Escolarização" />
 
         <TextView
-                android:id="@+id/tv_indicator_value"
+                android:id="@+id/tv_indicator_item_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/cerulean" android:textSize="22sp"
+                android:textAppearance="?attr/textAppearanceHeadline5"
                 android:textStyle="bold"
+                android:textColor="@color/cerulean"
+                app:layout_constraintTop_toTopOf="@id/tv_indicator_item_name"
+                app:layout_constraintBottom_toBottomOf="@id/tv_indicator_item_name"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBaseline_toBaselineOf="@id/tv_indicator_name"
                 tools:text="92%" />
 
-        <View
-                android:id="@+id/view_chart_placeholder"
+        <TextView
+                android:id="@+id/tv_indicator_item_source_period"
                 android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/non_photo_blue" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/text_secondary_default"
+                app:layout_constraintTop_toBottomOf="@id/tv_indicator_item_name"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_indicator_name"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Fonte: SME | Período: 2024" />
+
+        <FrameLayout
+                android:id="@+id/chart_container_indicator_item"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/non_photo_blue"
+                app:layout_constraintTop_toBottomOf="@id/tv_indicator_item_source_period"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="[Espaço para Gráfico]"
+                    android:textColor="@color/berkeley_blue"/>
+        </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </com.google.android.material.card.MaterialCardView>
+    

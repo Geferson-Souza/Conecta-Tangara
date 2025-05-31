@@ -11,7 +11,8 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.conectatangara.R;
+
+import com.conectatangara.R; // Adicione este import se não estiver lá
 
 public class OnboardingFragment extends Fragment {
 
@@ -47,4 +48,3 @@ public class OnboardingFragment extends Fragment {
         return view;
     }
 }
-

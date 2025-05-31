@@ -12,4 +12,13 @@
     <color name="gradientstart">#A8DADC</color>
     <color name="gradientmiddle">#F1FAEE</color>
     <color name="gradientend">#457B9D</color>
+
+    <color name="status_em_andamento_yellow">#FFC107</color>
+    <color name="status_resolvida_green">#2ECC71</color>
+    <color name="text_secondary_default">#757575</color> <!-- As cores para os outros status usarão suas cores existentes:
+         - Recebida: @color/non_photo_blue
+         - Em Análise: @color/cerulean
+         - Rejeitada: @color/red_pantone
+    -->
 </resources>
+
