@@ -96,5 +96,34 @@
     <string name="nav_title_home">Início</string>
     <string name="nav_title_my_occurrences">Minhas Ocorrências</string>
     <string name="nav_title_indicators">Indicadores</string>
-    <string name="nav_title_public_map">Mapa de Ocorrências</string>
+    <string name="nav_title_public_map">Mapa Público</string>
+    <string name="nav_title_profile">Perfil</string>
+    <string name="toolbar_title_my_tasks">Minhas Tarefas</string>
+    <string name="task_id_label">ID Tarefa:</string>
+    <string name="task_category_label">Categoria:</string>
+    <string name="task_address_label">Endereço:</string>
+    <string name="task_deadline_label">Prazo:</string>
+    <string name="task_status_placeholder">Status da Tarefa</string>
+    <string name="task_action_details">Ver Detalhes</string>
+    <string name="task_action_update_status">Atualizar Status</string>
+    <string name="my_tasks_empty_list">Você não possui tarefas atribuídas no momento.</string>
+    <string name="menu_title_filter">Filtrar</string>
+    <string name="toolbar_title_profile">Meu Perfil</string>
+    <string name="profile_user_avatar_description">Avatar do usuário</string>
+    <string name="profile_edit_profile">Editar Perfil</string>
+    <string name="profile_change_password">Alterar Senha</string>
+    <string name="profile_my_occurrences_shortcut">Minhas Ocorrências</string> <string name="profile_section_settings">Configurações</string>
+    <string name="profile_setting_notifications_general">Receber notificações gerais</string>
+    <string name="profile_setting_notifications_status_updates">Notificações de atualizações de status</string>
+    <string name="profile_section_information">Informações</string>
+    <string name="profile_about_app">Sobre o App</string>
+    <string name="profile_terms_of_use">Termos de Uso</string>
+    <string name="profile_privacy_policy">Política de Privacidade</string>
+    <string name="profile_logout">Sair (Logout)</string>
+    <string name="profile_user_name_placeholder">Nome do Usuário</string>
+    <string name="profile_user_email_placeholder">usuario@email.com</string>
+    <string name="profile_confirm_logout_title">Confirmar Saída</string>
+    <string name="profile_confirm_logout_message">Tem certeza que deseja sair da sua conta?</string>
+    <string name="dialog_yes">Sim</string>
+    <string name="dialog_no">Não</string>
 </resources>

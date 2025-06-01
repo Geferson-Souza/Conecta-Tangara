@@ -10,12 +10,14 @@
             android:title="@string/nav_title_my_occurrences"/>
     <item
             android:id="@+id/nav_indicators"
-            android:icon="@drawable/ic_my_location"
+            android:icon="@drawable/ic_indicators_placeholder"
             android:title="@string/nav_title_indicators"/>
-
     <item
-        android:id="@+id/nav_public_map"
-        android:icon="@drawable/ic_map_placeholder"
-        android:title="@string/nav_title_public_map"/>
-
+            android:id="@+id/nav_public_map"
+            android:icon="@drawable/ic_map_placeholder"
+            android:title="@string/nav_title_public_map"/>
+    <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_profile_avatar_placeholder"
+            android:title="@string/nav_title_profile"/>
 </menu>

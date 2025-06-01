@@ -7,12 +7,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-// A importação de R.java não é necessária na maioria dos casos no Android Studio
-// import com.conectatangara.R;
 
 import com.conectatangara.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -25,65 +21,59 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.conectatangara.utils.DatabaseSeeder;
+import com.google.firebase.firestore.FirebaseFirestore; // << ADICIONE ESTE IMPORT
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText editTextEmail, editTextSenha;
     private Button buttonLogin, buttonRegister;
-    private ImageButton buttonGoogle; // << Corrigido: Agora é um ImageButton
+    private ImageButton buttonGoogle;
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db; // << ADICIONE ESTA DECLARAÇÃO
 
     private GoogleSignInClient mGoogleSignInClient;
-    private static final int RC_SIGN_IN = 9001; // Código de requisição para login com Google
+    private static final int RC_SIGN_IN = 9001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Chamar o Seeder - apenas enquanto estiver em desenvolvimento/testes
-        // Certifique-se de que DatabaseSeeder.seedDatabase() não execute em produção
-        boolean ENABLE_SEEDER = false; // <- Mude para false para desativar
-
-        if (ENABLE_SEEDER) {
-            DatabaseSeeder.seedDatabase();
-        }   // use código acima somente em produção - se quiser popular o DataBase com o arquivo DatabaseSeeder.java
-
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance(); // << INICIALIZE O FIRESTORE
 
-        // Vincula os campos
+        // Chamar o Seeder
+        boolean ENABLE_SEEDER = false; // Mude para true para popular, depois volte para false
+        if (ENABLE_SEEDER) {
+            DatabaseSeeder.seedDatabase(db); // << PASSE A INSTÂNCIA 'db'
+        }
+
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextSenha = findViewById(R.id.editTextSenha);
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonRegister = findViewById(R.id.buttonRegister);
-        buttonGoogle = findViewById(R.id.buttonGoogle); // << Corrigido: Usando a variável buttonGoogle
+        buttonGoogle = findViewById(R.id.buttonGoogle);
 
-        // Botão de login (e-mail/senha)
         buttonLogin.setOnClickListener(v -> loginUsuario());
-
-        // Botão de registro
         buttonRegister.setOnClickListener(v -> registrarUsuario());
 
-        //Botão temporario para o DatabaseSeeder
         Button btnSeed = findViewById(R.id.btnSeed);
-        btnSeed.setOnClickListener(v -> DatabaseSeeder.seedDatabase());
+        btnSeed.setOnClickListener(v -> {
+            DatabaseSeeder.seedDatabase(db); // << PASSE A INSTÂNCIA 'db'
+            Toast.makeText(LoginActivity.this, "Tentativa de popular o banco...", Toast.LENGTH_SHORT).show();
+        });
 
-
-        // Configuração do Google Sign-In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id)) // Verifique se esse valor está no strings.xml
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        // Botão de login com Google
         buttonGoogle.setOnClickListener(v -> signInWithGoogle());
     }
 
     private void registrarUsuario() {
-        String email = editTextEmail.getText().toString().trim();
-        String senha = editTextSenha.getText().toString().trim();
+        String email = String.valueOf(editTextEmail.getText()).trim(); // Mais seguro
+        String senha = String.valueOf(editTextSenha.getText()).trim(); // Mais seguro
 
         if (email.isEmpty() || senha.isEmpty()) {
             Toast.makeText(this, "Preencha o e-mail e a senha", Toast.LENGTH_SHORT).show();
@@ -93,16 +83,21 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(email, senha)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        // FirebaseUser user = mAuth.getCurrentUser(); // Não é estritamente necessário se não for usar a info do user aqui
                         Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
+                        // TODO: Após o cadastro, você pode querer criar um documento para este usuário na coleção 'usuarios' do Firestore
+                        // Ex: String userId = mAuth.getCurrentUser().getUid();
+                        //     Map<String, Object> userData = new HashMap<>();
+                        //     userData.put("nomeCompleto", "Novo Usuário"); // Pegar de campos de nome, se houver
+                        //     userData.put("email", email);
+                        //     userData.put("tipoUsuario", "cidadao");
+                        //     userData.put("dataCadastro", com.google.firebase.Timestamp.now());
+                        //     db.collection("usuarios").document(userId).set(userData);
+
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        // Adiciona flags para limpar a pilha de activities anteriores,
-                        // assim o usuário não volta para a tela de login ao pressionar "Voltar".
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-                        finish(); // Finaliza a LoginActivity
+                        finish();
                     } else {
-                        // Task.getException() pode ser nulo ou retornar diferentes tipos de exceções
                         String errorMessage = "Erro ao cadastrar.";
                         if (task.getException() != null) {
                             errorMessage += " " + task.getException().getMessage();
@@ -113,8 +108,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUsuario() {
-        String email = editTextEmail.getText().toString().trim();
-        String senha = editTextSenha.getText().toString().trim();
+        String email = String.valueOf(editTextEmail.getText()).trim(); // Mais seguro
+        String senha = String.valueOf(editTextSenha.getText()).trim(); // Mais seguro
 
         if (email.isEmpty() || senha.isEmpty()) {
             Toast.makeText(this, "Preencha o e-mail e a senha", Toast.LENGTH_SHORT).show();
@@ -124,16 +119,12 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email, senha)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        // FirebaseUser user = mAuth.getCurrentUser(); // Não é estritamente necessário se não for usar a info do user aqui
                         Toast.makeText(this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        // Adiciona flags para limpar a pilha de activities anteriores,
-                        // assim o usuário não volta para a tela de login ao pressionar "Voltar".
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-                        finish(); // Finaliza a LoginActivity
+                        finish();
                     } else {
-                        // Task.getException() pode ser nulo ou retornar diferentes tipos de exceções
                         String errorMessage = "Erro ao fazer login.";
                         if (task.getException() != null) {
                             errorMessage += " " + task.getException().getMessage();
@@ -142,8 +133,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-
-    // --- LOGIN COM GOOGLE ---
 
     private void signInWithGoogle() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -158,10 +147,13 @@ public class LoginActivity extends AppCompatActivity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account);
+                if (account != null) { // Verificação de nulidade
+                    firebaseAuthWithGoogle(account);
+                } else {
+                    Toast.makeText(this, "Falha no login com Google: conta nula.", Toast.LENGTH_LONG).show();
+                }
             } catch (ApiException e) {
-                // Melhorar o tratamento de erro em produção
-                Toast.makeText(this, "Falha no login com Google: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Falha no login com Google: " + e.getMessage() + " (Code: " + e.getStatusCode() + ")", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -171,16 +163,25 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        // FirebaseUser user = mAuth.getCurrentUser(); // Não é estritamente necessário
                         Toast.makeText(LoginActivity.this, "Login com Google realizado!", Toast.LENGTH_SHORT).show();
+                        // TODO: Verificar se é a primeira vez do usuário com este login Google
+                        // e criar um documento na coleção 'usuarios' do Firestore se necessário.
+                        // FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                        // if (firebaseUser != null && task.getResult().getAdditionalUserInfo().isNewUser()) {
+                        //    Map<String, Object> userData = new HashMap<>();
+                        //    userData.put("nomeCompleto", firebaseUser.getDisplayName());
+                        //    userData.put("email", firebaseUser.getEmail());
+                        //    userData.put("tipoUsuario", "cidadao");
+                        //    userData.put("dataCadastro", com.google.firebase.Timestamp.now());
+                        //    // userData.put("fotoUrl", firebaseUser.getPhotoUrl() != null ? firebaseUser.getPhotoUrl().toString() : null);
+                        //    db.collection("usuarios").document(firebaseUser.getUid()).set(userData);
+                        // }
+
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        // Adiciona flags para limpar a pilha de activities anteriores,
-                        // assim o usuário não volta para a tela de login ao pressionar "Voltar".
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-                        finish(); // Finaliza a LoginActivity
+                        finish();
                     } else {
-                        // Task.getException() pode ser nulo ou retornar diferentes tipos de exceções
                         String errorMessage = "Erro na autenticação com Google.";
                         if (task.getException() != null) {
                             errorMessage += " " + task.getException().getMessage();

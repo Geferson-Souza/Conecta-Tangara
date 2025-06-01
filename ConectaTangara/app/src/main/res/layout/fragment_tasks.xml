@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/honeydew"
+        tools:context=".fragments.TasksFragment"> <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_tasks"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/list_item_task"
+        tools:itemCount="4"/>
+
+    <TextView
+            android:id="@+id/tv_empty_tasks_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_tasks_empty_list"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textColor="@color/text_secondary_default"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            tools:visibility="visible"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    
