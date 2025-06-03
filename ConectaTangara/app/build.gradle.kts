@@ -6,8 +6,9 @@ plugins {
 }
 
 android {
-    namespace = "com.conectatangara" // <--- CORRIGIDO
-    compileSdk = 34 // <--- AJUSTADO para uma versão estável comum
+    namespace = "com.conectatangara"
+    compileSdk = 34// <--- CORRIGIDO
+    // <--- AJUSTADO para uma versão estável comum
 
     defaultConfig {
         applicationId = "com.conectatangara" // <--- CORRIGIDO
@@ -32,6 +33,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+
     // Se você estiver usando Kotlin, adicione o bloco kotlinOptions se não estiver presente:
     // kotlinOptions {
     //     jvmTarget = "11" // Ou a versão correspondente à sua sourceCompatibility
@@ -61,7 +64,7 @@ dependencies {
     // implementation("androidx.core:core-ktx:1.13.1") // Exemplo de como seria sem o catalog, adicione se necessário
     // implementation("androidx.constraintlayout:constraintlayout:2.1.4") // Exemplo, adicione se necessário
     // Dependêmcias do Google maps
-    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.google.android.gms:play-services-maps:19.2.0")
     // Google Play Services Location
     implementation("com.google.android.gms:play-services-location:21.3.0") // Verifique a versão mais recente
 

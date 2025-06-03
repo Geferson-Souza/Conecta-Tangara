@@ -10,8 +10,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.conectatangara.adapters.OnboardingAdapter;
-import com.conectatangara.R;
+import com.conectatangara.R; // Certifique-se que o import está correto
+import com.conectatangara.adapters.OnboardingAdapter; // Certifique-se que o import está correto
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -23,12 +23,13 @@ public class OnboardingActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private OnboardingAdapter adapter;
 
-    private static final String PREFS_NAME = "ConectaTangaraPrefs";
-    private static final String KEY_FIRST_RUN = "isFirstRun";
+    private static final String PREFS_NAME = "ConectaTangaraPrefs"; // Deve ser a mesma constante da SplashActivity
+    private static final String KEY_FIRST_RUN = "isFirstRun"; // Deve ser a mesma constante da SplashActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // O tema NoActionBar para a OnboardingActivity geralmente é definido no AndroidManifest.xml
         setContentView(R.layout.activity_onboarding);
 
         viewPager = findViewById(R.id.view_pager_onboarding);
@@ -36,39 +37,33 @@ public class OnboardingActivity extends AppCompatActivity {
         buttonSkip = findViewById(R.id.button_skip);
         tabLayout = findViewById(R.id.tab_layout_indicator);
 
-        adapter = new OnboardingAdapter(this);
+        adapter = new OnboardingAdapter(this); // Passa a Activity (que é um FragmentActivity)
         viewPager.setAdapter(adapter);
 
-        // Vincula o TabLayout ao ViewPager2
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-            // Não precisamos de texto ou ícones aqui, apenas os pontos
+            // Para os pontos do indicador, não precisamos de texto ou ícone no tab
         }).attach();
 
-        // Listener para o botão Pular
         buttonSkip.setOnClickListener(v -> finishOnboarding());
 
-        // Listener para o botão Avançar/Concluir
         buttonNext.setOnClickListener(v -> {
             int currentItem = viewPager.getCurrentItem();
             if (currentItem < adapter.getItemCount() - 1) {
-                // Se não for a última tela, avança
                 viewPager.setCurrentItem(currentItem + 1);
             } else {
-                // Se for a última tela, finaliza o onboarding
                 finishOnboarding();
             }
         });
 
-        // Atualiza o texto do botão Avançar na última tela
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 if (position == adapter.getItemCount() - 1) {
-                    buttonNext.setText("Concluir");
-                    buttonSkip.setVisibility(View.INVISIBLE); // Opcional: esconder Pular na última
+                    buttonNext.setText(getString(R.string.onboarding_button_finish)); // Usar string resource
+                    buttonSkip.setVisibility(View.GONE); // Esconder "Pular" na última tela
                 } else {
-                    buttonNext.setText("Avançar");
+                    buttonNext.setText(getString(R.string.onboarding_button_next)); // Usar string resource
                     buttonSkip.setVisibility(View.VISIBLE);
                 }
             }
@@ -76,16 +71,13 @@ public class OnboardingActivity extends AppCompatActivity {
     }
 
     private void finishOnboarding() {
-        // Salva que o onboarding foi concluído
         SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean(KEY_FIRST_RUN, false);
+        editor.putBoolean(KEY_FIRST_RUN, false); // Marca que o onboarding foi concluído
         editor.apply();
 
-        // Navega para a LoginActivity
         Intent intent = new Intent(OnboardingActivity.this, LoginActivity.class);
         startActivity(intent);
         finish(); // Fecha a OnboardingActivity
     }
 }
-

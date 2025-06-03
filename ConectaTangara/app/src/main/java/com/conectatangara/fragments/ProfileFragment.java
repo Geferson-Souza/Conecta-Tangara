@@ -1,6 +1,5 @@
 package com.conectatangara.fragments;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,20 +15,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-// import com.bumptech.glide.Glide; // Para carregar o avatar do usuário
+import com.bumptech.glide.Glide;
 import com.conectatangara.R;
 import com.conectatangara.activities.LoginActivity;
-import com.conectatangara.activities.MainActivity; // Para setar o título da Toolbar
-import com.google.android.material.materialswitch.MaterialSwitch; // Import para MaterialSwitch
-// import com.google.firebase.auth.FirebaseAuth; // Para logout e dados do usuário
-// import com.google.firebase.auth.FirebaseUser; // Para dados do usuário
+import com.conectatangara.activities.MainActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.materialswitch.MaterialSwitch;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileFragment extends Fragment {
 
     private ImageView ivProfileAvatar;
     private TextView tvProfileUserName;
     private TextView tvProfileUserEmail;
-    private Button buttonEditProfile; // Mudado para Button, conforme layout
+    private Button buttonEditProfile;
     private TextView tvChangePassword;
     private TextView tvMyOccurrencesShortcut;
     private MaterialSwitch switchNotificationsGeneral;
@@ -39,16 +39,21 @@ public class ProfileFragment extends Fragment {
     private TextView tvPrivacyPolicy;
     private Button buttonLogout;
 
-    // private FirebaseAuth mAuth; // Descomente quando for integrar com Firebase Auth
+    private FirebaseAuth mAuth;
 
     public ProfileFragment() {
         // Required empty public constructor
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mAuth = FirebaseAuth.getInstance(); // Inicializa o FirebaseAuth
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Infla o layout para este fragmento
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
@@ -56,13 +61,10 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // mAuth = FirebaseAuth.getInstance(); // Descomente para Firebase Auth
-
-        // Inicializa as Views
         ivProfileAvatar = view.findViewById(R.id.iv_profile_avatar);
         tvProfileUserName = view.findViewById(R.id.tv_profile_user_name);
         tvProfileUserEmail = view.findViewById(R.id.tv_profile_user_email);
-        buttonEditProfile = view.findViewById(R.id.button_edit_profile); // ID do MaterialButton
+        buttonEditProfile = view.findViewById(R.id.button_edit_profile);
         tvChangePassword = view.findViewById(R.id.tv_change_password);
         tvMyOccurrencesShortcut = view.findViewById(R.id.tv_my_occurrences_shortcut);
         switchNotificationsGeneral = view.findViewById(R.id.switch_notifications_general);
@@ -72,66 +74,76 @@ public class ProfileFragment extends Fragment {
         tvPrivacyPolicy = view.findViewById(R.id.tv_privacy_policy);
         buttonLogout = view.findViewById(R.id.button_logout);
 
-        loadUserProfileData(); // Carrega dados (placeholders por enquanto)
-        setupClickListeners(); // Configura os cliques
+        loadUserProfileData();
+        setupClickListeners();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        // Define o título na Toolbar da MainActivity
         if (getActivity() instanceof MainActivity) {
             ((MainActivity) getActivity()).setToolbarTitle(getString(R.string.toolbar_title_profile));
         }
+        // Recarregar dados do usuário caso haja alguma mudança (ex: nome ou foto atualizada em outra tela)
+        // Isso é útil se o usuário editar o perfil e voltar para esta tela.
+        loadUserProfileData();
     }
 
     private void loadUserProfileData() {
-        // FirebaseUser currentUser = mAuth.getCurrentUser(); // Descomente para Firebase
-        // if (currentUser != null && getContext() != null) {
-        //    tvProfileUserName.setText(currentUser.getDisplayName() != null ? currentUser.getDisplayName() : getString(R.string.profile_user_name_placeholder));
-        //    tvProfileUserEmail.setText(currentUser.getEmail());
-        //    if (currentUser.getPhotoUrl() != null) {
-        //        Glide.with(getContext())
-        //                .load(currentUser.getPhotoUrl())
-        //                .placeholder(R.drawable.ic_profile_avatar_placeholder) // Seu placeholder
-        //                .error(R.drawable.ic_profile_avatar_placeholder)       // Ícone de erro
-        //                .circleCrop() // Para deixar a imagem redonda
-        //                .into(ivProfileAvatar);
-        //    } else {
-        //        ivProfileAvatar.setImageResource(R.drawable.ic_profile_avatar_placeholder);
-        //    }
-        // } else {
-        // Dados de placeholder se não houver usuário ou para teste de layout
-        tvProfileUserName.setText(getString(R.string.profile_user_name_placeholder));
-        tvProfileUserEmail.setText(getString(R.string.profile_user_email_placeholder));
-        if (getContext() != null) { // Para carregar o drawable placeholder
-            ivProfileAvatar.setImageResource(R.drawable.ic_profile_avatar_placeholder);
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null && getContext() != null) {
+            // Define o nome do usuário
+            if (currentUser.getDisplayName() != null && !currentUser.getDisplayName().isEmpty()) {
+                tvProfileUserName.setText(currentUser.getDisplayName());
+            } else if (currentUser.getEmail() != null && !currentUser.getEmail().isEmpty()) {
+                // Se não houver nome de exibição, tenta usar o email antes do placeholder
+                tvProfileUserName.setText(currentUser.getEmail());
+            } else {
+                tvProfileUserName.setText(getString(R.string.profile_user_name_placeholder));
+            }
+
+            // Define o email do usuário
+            tvProfileUserEmail.setText(currentUser.getEmail());
+
+            // Carrega a foto do perfil usando Glide
+            if (currentUser.getPhotoUrl() != null) {
+                Glide.with(getContext().getApplicationContext()) // Usar applicationContext com Glide em Fragments
+                        .load(currentUser.getPhotoUrl())
+                        .placeholder(R.drawable.ic_profile_avatar_placeholder) // Certifique-se que este drawable existe
+                        .error(R.drawable.ic_profile_avatar_placeholder)       // Ícone em caso de erro
+                        .circleCrop() // Para deixar a imagem redonda
+                        .into(ivProfileAvatar);
+            } else {
+                ivProfileAvatar.setImageResource(R.drawable.ic_profile_avatar_placeholder); // Placeholder padrão
+            }
+        } else {
+            // Dados de placeholder se não houver usuário logado ou contexto nulo
+            tvProfileUserName.setText(getString(R.string.profile_user_name_placeholder));
+            tvProfileUserEmail.setText(getString(R.string.profile_user_email_placeholder));
+            if (getContext() != null) {
+                ivProfileAvatar.setImageResource(R.drawable.ic_profile_avatar_placeholder);
+            }
         }
-        // }
     }
 
     private void setupClickListeners() {
         buttonEditProfile.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Editar Perfil - Funcionalidade a implementar", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Editar Perfil - A implementar", Toast.LENGTH_SHORT).show();
             // TODO: Navegar para uma Activity/Fragment de edição de perfil
         });
 
         tvChangePassword.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Alterar Senha - Funcionalidade a implementar", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Alterar Senha - A implementar", Toast.LENGTH_SHORT).show();
             // TODO: Mostrar diálogo ou navegar para tela de alteração de senha
         });
 
         tvMyOccurrencesShortcut.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Minhas Ocorrências - Funcionalidade a implementar", Toast.LENGTH_SHORT).show();
-            // TODO: Navegar para o MyOccurrencesFragment.
-            // Exemplo: if (getActivity() instanceof MainActivity) {
-            //             ((MainActivity) getActivity()).navigateToFragment(new MyOccurrencesFragment(), "MY_OCCURRENCES_TAG");
-            //          }
-            // Ou se estiver usando BottomNavigationView, selecionar o item correspondente:
-            // if (getActivity() instanceof MainActivity) {
-            //    BottomNavigationView bottomNav = getActivity().findViewById(R.id.bottom_navigation_view);
-            //    if (bottomNav != null) bottomNav.setSelectedItemId(R.id.nav_my_occurrences);
-            // }
+            if (getActivity() instanceof MainActivity) {
+                BottomNavigationView bottomNav = getActivity().findViewById(R.id.bottom_navigation_view);
+                if (bottomNav != null) {
+                    bottomNav.setSelectedItemId(R.id.nav_my_occurrences); // Certifique-se que este ID existe no menu
+                }
+            }
         });
 
         switchNotificationsGeneral.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -145,42 +157,39 @@ public class ProfileFragment extends Fragment {
         });
 
         tvAboutApp.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Sobre o App - Funcionalidade a implementar", Toast.LENGTH_SHORT).show();
             // TODO: Mostrar um diálogo "Sobre" ou abrir uma tela de "Sobre"
+            Toast.makeText(getContext(), "Sobre o App - A implementar", Toast.LENGTH_SHORT).show();
         });
 
         tvTermsOfUse.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Termos de Uso - Funcionalidade a implementar", Toast.LENGTH_SHORT).show();
             // TODO: Abrir link para os Termos de Uso (ex: com Intent para URL)
+            Toast.makeText(getContext(), "Termos de Uso - A implementar", Toast.LENGTH_SHORT).show();
         });
 
         tvPrivacyPolicy.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Política de Privacidade - Funcionalidade a implementar", Toast.LENGTH_SHORT).show();
             // TODO: Abrir link para a Política de Privacidade
+            Toast.makeText(getContext(), "Política de Privacidade - A implementar", Toast.LENGTH_SHORT).show();
         });
 
         buttonLogout.setOnClickListener(v -> showLogoutConfirmationDialog());
     }
 
     private void showLogoutConfirmationDialog() {
-        if (getContext() == null) return; // Evita crash se o fragmento for desanexado
+        if (getContext() == null) return;
         new AlertDialog.Builder(getContext())
                 .setTitle(getString(R.string.profile_confirm_logout_title))
                 .setMessage(getString(R.string.profile_confirm_logout_message))
                 .setPositiveButton(getString(R.string.dialog_yes), (dialog, which) -> logoutUser())
                 .setNegativeButton(getString(R.string.dialog_no), null)
-                .setIcon(R.drawable.ic_logout) // Opcional: adiciona um ícone ao diálogo
+                .setIcon(R.drawable.ic_logout) // Certifique-se que este drawable existe
                 .show();
     }
 
     private void logoutUser() {
-        // Descomente e use quando o Firebase Auth estiver configurado
-        // FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        // if (mAuth != null) {
-        //    mAuth.signOut();
-        // }
-
-        // TODO: Limpar quaisquer outros dados de sessão local se necessário
+        if (mAuth != null) {
+            mAuth.signOut();
+        }
+        // TODO: Limpar quaisquer outros dados de sessão local se necessário (ex: SharedPreferences de preferências de notificação)
 
         if (getActivity() != null) {
             Intent intent = new Intent(getActivity(), LoginActivity.class);
@@ -190,4 +199,3 @@ public class ProfileFragment extends Fragment {
         }
     }
 }
-    

@@ -8,7 +8,7 @@
     <string name="email_hint">Digite seu email</string>
     <string name="password_hint">Digite sua senha</string>
     <string name="login_com_google">Login com Google</string>
-    <string name="default_web_client_id" translatable="false">SEU_CLIENT_ID</string>
+    <string name="default_web_client_id" translatable="false">401092890842-da8rdtqleolerutk477qe77olldk2j5s.apps.googleusercontent.com</string>
 
     <string name="toolbar_title_report_occurrence">Registrar Ocorrência</string>
     <string name="hint_occurrence_title">Título da Ocorrência</string>

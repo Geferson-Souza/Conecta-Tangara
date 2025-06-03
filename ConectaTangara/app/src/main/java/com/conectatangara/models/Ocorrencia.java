@@ -1,39 +1,38 @@
 package com.conectatangara.models;
 
 import com.google.firebase.firestore.GeoPoint;
-import com.google.firebase.firestore.ServerTimestamp; // Import para @ServerTimestamp
+import com.google.firebase.firestore.ServerTimestamp;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Ocorrencia {
-    private String id; // ID do documento no Firestore
+    private String id;
     private String userId;
     private String titulo;
     private String descricao;
     private String categoria;
     private String status;
-    private GeoPoint localizacao; // Usar GeoPoint para latitude/longitude
-    private String enderecoTexto; // Adicionado para consistência com o seeder
+    private GeoPoint localizacao;
+    private String enderecoTexto;
     private String bairro;
-    @ServerTimestamp // Firestore preencherá automaticamente no servidor na criação
+    @ServerTimestamp
     private Date dataRegistro;
-    @ServerTimestamp // Firestore preencherá automaticamente no servidor na criação e atualização
+    @ServerTimestamp
     private Date dataUltimaAtualizacao;
     private List<String> mediaUrls;
-    private String atribuidoPara; // UID do funcionário
+    private String atribuidoPara;
     private String resolucaoFuncionario;
 
-    // Construtor vazio é necessário para o Firestore
     public Ocorrencia() {
-        this.mediaUrls = new ArrayList<>(); // Inicializa a lista para evitar NullPointerException
+        this.mediaUrls = new ArrayList<>();
     }
 
-    // Construtor mais completo (opcional, para testes ou se não usar @ServerTimestamp para datas)
+    // Construtor completo opcional
     public Ocorrencia(String userId, String titulo, String descricao, String categoria, String status,
-                      double latitude, double longitude, String enderecoTexto, String bairro, List<String> mediaUrls,
-                      String atribuidoPara, String resolucaoFuncionario, Date dataRegistro, Date dataUltimaAtualizacao) {
+                      double latitude, double longitude, String enderecoTexto, String bairro,
+                      List<String> mediaUrls, String atribuidoPara, String resolucaoFuncionario) {
         this.userId = userId;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -42,8 +41,7 @@ public class Ocorrencia {
         this.localizacao = new GeoPoint(latitude, longitude);
         this.enderecoTexto = enderecoTexto;
         this.bairro = bairro;
-        this.dataRegistro = dataRegistro; // Se não usar @ServerTimestamp, defina aqui
-        this.dataUltimaAtualizacao = dataUltimaAtualizacao; // Se não usar @ServerTimestamp, defina aqui
+        // dataRegistro e dataUltimaAtualizacao são preenchidos por @ServerTimestamp
         this.mediaUrls = mediaUrls != null ? new ArrayList<>(mediaUrls) : new ArrayList<>();
         this.atribuidoPara = atribuidoPara;
         this.resolucaoFuncionario = resolucaoFuncionario;
