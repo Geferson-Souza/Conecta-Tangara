@@ -11,7 +11,10 @@
         android:layout_marginBottom="4dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="8dp"
-        app:cardElevation="2dp">
+        app:cardElevation="2dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,19 +28,21 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:background="@color/cerulean"/> <TextView
-            android:id="@+id/tv_occurrence_category"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="8dp"
-            android:textAppearance="?attr/textAppearanceCaption"
-            android:textColor="@color/cerulean"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/view_status_indicator"
-            app:layout_constraintEnd_toStartOf="@+id/tv_occurrence_date"
-            tools:text="@string/occurrence_category_placeholder" />
+                tools:background="@color/cerulean"/>
+
+        <TextView
+                android:id="@+id/tv_occurrence_category"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/cerulean"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/view_status_indicator"
+                app:layout_constraintEnd_toStartOf="@+id/tv_occurrence_date"
+                tools:text="@string/occurrence_category_placeholder" />
 
         <TextView
                 android:id="@+id/tv_occurrence_date"

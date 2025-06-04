@@ -6,156 +6,159 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/honeydew"
-        tools:context=".fragments.ProfileFragment"> <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="16dp">
+        tools:context=".fragments.ProfileFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/non_photo_blue"
-            android:padding="24dp">
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
 
-        <ImageView
-                android:id="@+id/iv_profile_avatar"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:background="@drawable/circular_background_placeholder"
-                android:contentDescription="@string/profile_user_avatar_description"
-                android:src="@drawable/ic_profile_avatar_placeholder"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/non_photo_blue"
+                android:padding="24dp">
+
+            <ImageView
+                    android:id="@+id/iv_profile_avatar"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/circular_background_placeholder"
+                    android:contentDescription="@string/profile_user_avatar_description"
+                    android:src="@drawable/ic_profile_avatar_placeholder"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                    android:id="@+id/tv_profile_user_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textColor="@color/berkeley_blue"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/iv_profile_avatar"
+                    app:layout_constraintTop_toTopOf="@id/iv_profile_avatar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="@string/profile_user_name_placeholder" />
+
+            <TextView
+                    android:id="@+id/tv_profile_user_email"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="@color/cerulean"
+                    app:layout_constraintStart_toEndOf="@id/iv_profile_avatar"
+                    app:layout_constraintTop_toBottomOf="@id/tv_profile_user_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="@string/profile_user_email_placeholder" />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_edit_profile"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/profile_edit_profile"
+                    android:textColor="@color/cerulean"
+                    app:icon="@drawable/ic_edit_profile"
+                    app:iconTint="@color/cerulean"
+                    app:layout_constraintStart_toStartOf="@id/tv_profile_user_email"
+                    app:layout_constraintTop_toBottomOf="@id/tv_profile_user_email"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <TextView
-                android:id="@+id/tv_profile_user_name"
-                android:layout_width="0dp"
+                style="@style/ProfileSectionHeader"
+                android:text="Conta"/>
+
+        <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                android:textColor="@color/berkeley_blue"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/iv_profile_avatar"
-                app:layout_constraintTop_toTopOf="@id/iv_profile_avatar"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="@string/profile_user_name_placeholder" />
+                android:layout_marginEnd="16dp"/>
 
         <TextView
-                android:id="@+id/tv_profile_user_email"
-                android:layout_width="0dp"
+                android:id="@+id/tv_change_password"
+                style="@style/ProfileMenuItem"
+                app:drawableStartCompat="@drawable/ic_change_password"
+                android:text="@string/profile_change_password" />
+
+        <TextView
+                android:id="@+id/tv_my_occurrences_shortcut"
+                style="@style/ProfileMenuItem"
+                app:drawableStartCompat="@drawable/ic_my_occurrences"
+                android:text="@string/profile_my_occurrences_shortcut" />
+
+        <TextView
+                style="@style/ProfileSectionHeader"
+                android:layout_marginTop="16dp"
+                android:text="@string/profile_section_settings"/>
+
+        <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="@color/cerulean"
-                app:layout_constraintStart_toEndOf="@id/iv_profile_avatar"
-                app:layout_constraintTop_toBottomOf="@id/tv_profile_user_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="@string/profile_user_email_placeholder" />
+                android:layout_marginEnd="16dp"/>
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_notifications_general"
+                style="@style/ProfileSwitchItem"
+                android:text="@string/profile_setting_notifications_general"
+                android:checked="true"/>
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_notifications_status"
+                style="@style/ProfileSwitchItem"
+                android:text="@string/profile_setting_notifications_status_updates"
+                android:checked="true"/>
+
+        <TextView
+                style="@style/ProfileSectionHeader"
+                android:layout_marginTop="16dp"
+                android:text="@string/profile_section_information"/>
+
+        <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"/>
+
+        <TextView
+                android:id="@+id/tv_about_app"
+                style="@style/ProfileMenuItem"
+                app:drawableStartCompat="@drawable/ic_info_outline"
+                android:text="@string/profile_about_app" />
+
+        <TextView
+                android:id="@+id/tv_terms_of_use"
+                style="@style/ProfileMenuItem"
+                app:drawableStartCompat="@drawable/ic_info_outline"
+                android:text="@string/profile_terms_of_use" />
+
+        <TextView
+                android:id="@+id/tv_privacy_policy"
+                style="@style/ProfileMenuItem"
+                app:drawableStartCompat="@drawable/ic_info_outline"
+                android:text="@string/profile_privacy_policy" />
 
         <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_edit_profile"
-                style="?attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
+                android:id="@+id/button_logout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/profile_edit_profile"
-                android:textColor="@color/cerulean"
-                app:icon="@drawable/ic_edit_profile"
-                app:iconTint="@color/cerulean"
-                app:layout_constraintStart_toStartOf="@id/tv_profile_user_email"
-                app:layout_constraintTop_toBottomOf="@id/tv_profile_user_email"/>
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/profile_logout"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/red_pantone"
+                app:icon="@drawable/ic_logout"
+                app:iconTint="@color/white"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-            style="@style/ProfileSectionHeader"
-            android:text="Conta"/>
-
-    <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"/>
-
-    <TextView
-            android:id="@+id/tv_change_password"
-            style="@style/ProfileMenuItem"
-            app:drawableStartCompat="@drawable/ic_change_password"
-            android:text="@string/profile_change_password" />
-
-    <TextView
-            android:id="@+id/tv_my_occurrences_shortcut"
-            style="@style/ProfileMenuItem"
-            app:drawableStartCompat="@drawable/ic_my_occurrences"
-            android:text="@string/profile_my_occurrences_shortcut" />
-
-    <TextView
-            style="@style/ProfileSectionHeader"
-            android:layout_marginTop="16dp"
-            android:text="@string/profile_section_settings"/>
-
-    <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"/>
-
-    <com.google.android.material.materialswitch.MaterialSwitch
-            android:id="@+id/switch_notifications_general"
-            style="@style/ProfileSwitchItem"
-            android:text="@string/profile_setting_notifications_general"
-            android:checked="true"/>
-
-    <com.google.android.material.materialswitch.MaterialSwitch
-            android:id="@+id/switch_notifications_status"
-            style="@style/ProfileSwitchItem"
-            android:text="@string/profile_setting_notifications_status_updates"
-            android:checked="true"/>
-
-    <TextView
-            style="@style/ProfileSectionHeader"
-            android:layout_marginTop="16dp"
-            android:text="@string/profile_section_information"/>
-
-    <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"/>
-
-    <TextView
-            android:id="@+id/tv_about_app"
-            style="@style/ProfileMenuItem"
-            app:drawableStartCompat="@drawable/ic_info_outline"
-            android:text="@string/profile_about_app" />
-
-    <TextView
-            android:id="@+id/tv_terms_of_use"
-            style="@style/ProfileMenuItem"
-            app:drawableStartCompat="@drawable/ic_info_outline"
-            android:text="@string/profile_terms_of_use" />
-
-    <TextView
-            android:id="@+id/tv_privacy_policy"
-            style="@style/ProfileMenuItem"
-            app:drawableStartCompat="@drawable/ic_info_outline"
-            android:text="@string/profile_privacy_policy" />
-
-    <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_logout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/profile_logout"
-            android:textColor="@color/white"
-            app:backgroundTint="@color/red_pantone"
-            app:icon="@drawable/ic_logout"
-            app:iconTint="@color/white"/>
-
-</LinearLayout>
+    </LinearLayout>
 </androidx.core.widget.NestedScrollView>
     

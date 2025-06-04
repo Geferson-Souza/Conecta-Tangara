@@ -8,10 +8,6 @@
         android:background="@color/honeydew"
         tools:context=".fragments.OccurrencesMapFragment">
 
-    <!-- O CoordinatorLayout também pode ser removido se não houver comportamentos de scroll complexos
-         ou FloatingActionButtons que precisem dele especificamente neste fragmento.
-         Um ConstraintLayout como raiz é geralmente suficiente. -->
-
     <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_filters_map"
             android:layout_width="0dp"
@@ -35,7 +31,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Filtrar por:"
+                    android:text="@string/filter_map_label"
                     android:textColor="@color/berkeley_blue"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -53,7 +49,7 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Novas"
+                        android:text="@string/chip_status_new"
                         app:chipBackgroundColor="@color/chip_filter_background_selector"
                         android:textColor="@color/chip_filter_text_selector"
                         app:chipIcon="@drawable/ic_marker_red_pantone_circle" />
@@ -63,7 +59,7 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Em Andamento"
+                        android:text="@string/chip_status_in_progress"
                         app:chipBackgroundColor="@color/chip_filter_background_selector"
                         android:textColor="@color/chip_filter_text_selector"
                         app:chipIcon="@drawable/ic_marker_cerulean_circle" />
@@ -73,7 +69,7 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Resolvidas"
+                        android:text="@string/chip_status_resolved"
                         app:chipBackgroundColor="@color/chip_filter_background_selector"
                         android:textColor="@color/chip_filter_text_selector"
                         app:chipIcon="@drawable/ic_marker_green_status_circle" />
@@ -89,7 +85,8 @@
                     android:background="@drawable/spinner_background_outline"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
-                    tools:prompt="Tipo de Ocorrência"/>
+                    android:prompt="@string/prompt_occurrence_type_map"
+                    tools:prompt="@string/prompt_occurrence_type_map"/>
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

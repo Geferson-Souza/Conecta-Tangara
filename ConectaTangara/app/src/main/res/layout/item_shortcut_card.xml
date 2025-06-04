@@ -6,33 +6,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
-        app:cardBackgroundColor="@color/white">
+        app:cardBackgroundColor="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:gravity="center">
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:padding="16dp"
+android:gravity="center">
 
-        <ImageView
-                android:id="@+id/imageViewShortcutIcon"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginBottom="8dp"
-                android:scaleType="fitCenter"
-                app:tint="@color/cerulean"
-                tools:src="@drawable/ic_placeholder_shortcut" /> <TextView
-            android:id="@+id/textViewShortcutTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceSubtitle1"
-            android:textColor="@color/berkeley_blue"
-            android:gravity="center"
-            tools:text="Título do Atalho" />
+<ImageView
+        android:id="@+id/imageViewShortcutIcon"
+        android:layout_width="56dp"
+android:layout_height="56dp"
+android:layout_marginBottom="8dp"
+android:scaleType="fitCenter"
+app:tint="@color/cerulean"
+tools:src="@drawable/ic_placeholder_shortcut"
+android:contentDescription="@string/shortcut_icon_description_placeholder" />
 
-    </LinearLayout>
+<TextView
+        android:id="@+id/textViewShortcutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody1"
+android:textColor="@color/berkeley_blue"
+android:gravity="center"
+android:maxLines="2"
+android:ellipsize="end"
+tools:text="Título do Atalho" />
 
-</com.google.android.material.card.MaterialCardView>
+</LinearLayout>
+        </com.google.android.material.card.MaterialCardView>

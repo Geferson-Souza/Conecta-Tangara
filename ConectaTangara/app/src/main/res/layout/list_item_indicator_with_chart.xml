@@ -11,7 +11,10 @@
         android:layout_marginBottom="8dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="12dp"
-        app:cardElevation="4dp">
+        app:cardElevation="4dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,7 +33,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/tv_indicator_item_value"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
-                tools:text="Taxa de Escolarização" />
+                tools:text="@string/occurrence_title_placeholder" /> <!-- Usar string placeholder adequada -->
 
         <TextView
                 android:id="@+id/tv_indicator_item_value"
