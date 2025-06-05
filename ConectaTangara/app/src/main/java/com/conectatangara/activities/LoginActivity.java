@@ -52,10 +52,10 @@ public class LoginActivity extends AppCompatActivity {
 
         // Verifica se o usuário já está logado (ex: se o app foi fechado e reaberto)
         // Se sim, vai direto para a MainActivity
-        // if (mAuth.getCurrentUser() != null) {
-        //     goToMainActivity();
-        //     return; // Importante para não continuar o onCreate da LoginActivity
-        // }
+         if (mAuth.getCurrentUser() != null) {
+             goToMainActivity();
+            return; // Importante para não continuar o onCreate da LoginActivity
+         }
 
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextSenha = findViewById(R.id.editTextSenha);

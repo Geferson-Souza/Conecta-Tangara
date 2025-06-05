@@ -2,16 +2,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permissões de Internet e Localização -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Permissão da Câmera -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Declara que o app usa a câmera, mas ela não é obrigatória para o funcionamento -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <!--
+        Permissões de Armazenamento e Mídia:
+        - READ_EXTERNAL_STORAGE é necessário para Android 12 (API 32) e inferior.
+        - READ_MEDIA_IMAGES/VIDEO são para Android 13 (API 33) e superior.
+        - READ_MEDIA_VISUAL_USER_SELECTED é para o seletor de fotos no Android 14 (API 34) e superior.
+    -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <!-- Necessário se você for usar o seletor de fotos do sistema no Android 14+ -->
     <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
 
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
 
     <application
             android:allowBackup="true"
@@ -22,46 +34,73 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.ConectaTangara"
-            tools:targetApi="31">
+            tools:targetApi="34">
 
+        <!-- Chave da API do Google Maps (coloque sua chave no gradle.properties ou local.properties) -->
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
                 android:value="${MAPS_API_KEY}" />
 
+        <!-- Activity Inicial (Splash Screen) -->
         <activity
                 android:name=".activities.SplashActivity"
                 android:exported="true"
-                android:theme="@style/Theme.ConectaTangara.NoActionBar"> <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                android:theme="@style/Theme.ConectaTangara.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
+        <!-- Activity de Onboarding -->
         <activity
                 android:name=".activities.OnboardingActivity"
                 android:exported="false"
-                android:theme="@style/Theme.ConectaTangara.NoActionBar"> </activity>
+                android:theme="@style/Theme.ConectaTangara.NoActionBar" />
 
+        <!-- Activity de Login -->
         <activity
                 android:name=".activities.LoginActivity"
-                android:exported="false">
-        </activity>
+                android:exported="false"
+                android:theme="@style/Theme.ConectaTangara.NoActionBar" />
 
+
+        <!-- Activity Principal -->
         <activity
                 android:name=".activities.MainActivity"
-                android:exported="false">
-        </activity>
+                android:exported="false"
+                android:windowSoftInputMode="adjustPan" />
 
+
+        <!-- Activity para Reportar Ocorrência -->
         <activity
                 android:name=".activities.ReportOccurrenceActivity"
                 android:exported="false"
-                android:parentActivityName=".activities.MainActivity">
+                android:parentActivityName=".activities.MainActivity"
+                android:windowSoftInputMode="adjustResize">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".activities.MainActivity" />
         </activity>
 
+        <!--
+             Declaração do FileProvider:
+             Necessário para compartilhar arquivos (como fotos da câmera) de forma segura.
+             - android:name: Nome completo da classe FileProvider.
+             - android:authorities: Deve ser único, geralmente o ID da aplicação + ".fileprovider".
+             - android:exported="false": O provider não precisa ser acessível por outros apps diretamente.
+             - android:grantUriPermissions="true": Permite conceder permissões temporárias para URIs de conteúdo.
+        -->
+        <provider
+                android:name="androidx.core.content.FileProvider"
+                android:authorities="${applicationId}.fileprovider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_paths" />
+        </provider>
+
     </application>
 
 </manifest>
-

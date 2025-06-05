@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "401092890842-5ctenhgup8g9tfqbr08b8mpld8t70j73.apps.googleusercontent.com",
+          "client_id": "401092890842-jig8vjlcqoddj95ausvlch42g9lj333l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.conectatangara",
-            "certificate_hash": "c55a3d0595b8d881838f18059936fd464f56699a"
+            "certificate_hash": "6e490bbc5b3ca1aaa44cb8e706fc9e4e04e68206"
           }
         },
         {
