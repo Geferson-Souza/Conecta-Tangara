@@ -72,9 +72,11 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!-- ########## INÍCIO DA MUDANÇA ########## -->
         <TextView
                 style="@style/ProfileSectionHeader"
-                android:text="Conta"/>
+                android:text="@string/profile_section_account"/>
+        <!-- ########## FIM DA MUDANÇA ########## -->
 
         <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -161,4 +163,3 @@
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
-    

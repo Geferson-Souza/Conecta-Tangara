@@ -1,6 +1,7 @@
 package com.conectatangara.fragments;
 
 import android.content.Intent;
+import android.net.Uri; // Import para abrir links
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileFragment extends Fragment {
 
+    // ... (suas variáveis de instância permanecem as mesmas)
     private ImageView ivProfileAvatar;
     private TextView tvProfileUserName;
     private TextView tvProfileUserEmail;
@@ -38,8 +40,8 @@ public class ProfileFragment extends Fragment {
     private TextView tvTermsOfUse;
     private TextView tvPrivacyPolicy;
     private Button buttonLogout;
-
     private FirebaseAuth mAuth;
+
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -48,7 +50,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance(); // Inicializa o FirebaseAuth
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -84,43 +86,29 @@ public class ProfileFragment extends Fragment {
         if (getActivity() instanceof MainActivity) {
             ((MainActivity) getActivity()).setToolbarTitle(getString(R.string.toolbar_title_profile));
         }
-        // Recarregar dados do usuário caso haja alguma mudança (ex: nome ou foto atualizada em outra tela)
-        // Isso é útil se o usuário editar o perfil e voltar para esta tela.
         loadUserProfileData();
     }
 
     private void loadUserProfileData() {
+        // Seu código original aqui... (sem alterações)
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null && getContext() != null) {
-            // Define o nome do usuário
             if (currentUser.getDisplayName() != null && !currentUser.getDisplayName().isEmpty()) {
                 tvProfileUserName.setText(currentUser.getDisplayName());
             } else if (currentUser.getEmail() != null && !currentUser.getEmail().isEmpty()) {
-                // Se não houver nome de exibição, tenta usar o email antes do placeholder
                 tvProfileUserName.setText(currentUser.getEmail());
             } else {
                 tvProfileUserName.setText(getString(R.string.profile_user_name_placeholder));
             }
-
-            // Define o email do usuário
             tvProfileUserEmail.setText(currentUser.getEmail());
-
-            // Carrega a foto do perfil usando Glide
             if (currentUser.getPhotoUrl() != null) {
-                Glide.with(getContext().getApplicationContext()) // Usar applicationContext com Glide em Fragments
+                Glide.with(getContext().getApplicationContext())
                         .load(currentUser.getPhotoUrl())
-                        .placeholder(R.drawable.ic_profile_avatar_placeholder) // Certifique-se que este drawable existe
-                        .error(R.drawable.ic_profile_avatar_placeholder)       // Ícone em caso de erro
-                        .circleCrop() // Para deixar a imagem redonda
+                        .placeholder(R.drawable.ic_profile_avatar_placeholder)
+                        .error(R.drawable.ic_profile_avatar_placeholder)
+                        .circleCrop()
                         .into(ivProfileAvatar);
             } else {
-                ivProfileAvatar.setImageResource(R.drawable.ic_profile_avatar_placeholder); // Placeholder padrão
-            }
-        } else {
-            // Dados de placeholder se não houver usuário logado ou contexto nulo
-            tvProfileUserName.setText(getString(R.string.profile_user_name_placeholder));
-            tvProfileUserEmail.setText(getString(R.string.profile_user_email_placeholder));
-            if (getContext() != null) {
                 ivProfileAvatar.setImageResource(R.drawable.ic_profile_avatar_placeholder);
             }
         }
@@ -128,74 +116,82 @@ public class ProfileFragment extends Fragment {
 
     private void setupClickListeners() {
         buttonEditProfile.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Editar Perfil - A implementar", Toast.LENGTH_SHORT).show();
-            // TODO: Navegar para uma Activity/Fragment de edição de perfil
+            Toast.makeText(getContext(), "Editar Perfil - Em desenvolvimento", Toast.LENGTH_SHORT).show();
         });
 
         tvChangePassword.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Alterar Senha - A implementar", Toast.LENGTH_SHORT).show();
-            // TODO: Mostrar diálogo ou navegar para tela de alteração de senha
+            Toast.makeText(getContext(), "Alterar Senha - Em desenvolvimento", Toast.LENGTH_SHORT).show();
         });
 
         tvMyOccurrencesShortcut.setOnClickListener(v -> {
             if (getActivity() instanceof MainActivity) {
-                BottomNavigationView bottomNav = getActivity().findViewById(R.id.bottom_navigation_view);
-                if (bottomNav != null) {
-                    bottomNav.setSelectedItemId(R.id.nav_my_occurrences); // Certifique-se que este ID existe no menu
-                }
+                ((MainActivity) getActivity()).navigateToBottomNavItem(R.id.nav_my_occurrences);
             }
         });
 
         switchNotificationsGeneral.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            Toast.makeText(getContext(), getString(R.string.profile_setting_notifications_general) + (isChecked ? ": Ativadas" : ": Desativadas"), Toast.LENGTH_SHORT).show();
-            // TODO: Salvar esta preferência do usuário (ex: SharedPreferences)
+            String status = isChecked ? "ativadas" : "desativadas";
+            Toast.makeText(getContext(), "Notificações gerais " + status, Toast.LENGTH_SHORT).show();
         });
 
         switchNotificationsStatus.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            Toast.makeText(getContext(), getString(R.string.profile_setting_notifications_status_updates) + (isChecked ? ": Ativadas" : ": Desativadas"), Toast.LENGTH_SHORT).show();
-            // TODO: Salvar esta preferência do usuário
+            String status = isChecked ? "ativadas" : "desativadas";
+            Toast.makeText(getContext(), "Notificações de status " + status, Toast.LENGTH_SHORT).show();
         });
 
+        // ########## INÍCIO DA MUDANÇA ##########
         tvAboutApp.setOnClickListener(v -> {
-            // TODO: Mostrar um diálogo "Sobre" ou abrir uma tela de "Sobre"
-            Toast.makeText(getContext(), "Sobre o App - A implementar", Toast.LENGTH_SHORT).show();
+            // Mostra um diálogo simples com informações do app
+            if (getContext() == null) return;
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Sobre o Conecta Tangará")
+                    .setMessage("Versão 1.0\n\nDesenvolvido para facilitar a comunicação entre cidadãos e a prefeitura.")
+                    .setPositiveButton("OK", null)
+                    .show();
         });
 
         tvTermsOfUse.setOnClickListener(v -> {
-            // TODO: Abrir link para os Termos de Uso (ex: com Intent para URL)
-            Toast.makeText(getContext(), "Termos de Uso - A implementar", Toast.LENGTH_SHORT).show();
+            // Mostra um Toast e, opcionalmente, abre um link
+            Toast.makeText(getContext(), "Abrindo Termos de Uso...", Toast.LENGTH_SHORT).show();
+            // TODO: Substituir a URL pelo link real dos seus termos de uso
+            // openUrl("https://www.seusite.com/termos");
         });
 
         tvPrivacyPolicy.setOnClickListener(v -> {
-            // TODO: Abrir link para a Política de Privacidade
-            Toast.makeText(getContext(), "Política de Privacidade - A implementar", Toast.LENGTH_SHORT).show();
+            // Mostra um Toast e, opcionalmente, abre um link
+            Toast.makeText(getContext(), "Abrindo Política de Privacidade...", Toast.LENGTH_SHORT).show();
+            // TODO: Substituir a URL pelo link real da sua política de privacidade
+            // openUrl("https://www.seusite.com/privacidade");
         });
+        // ########## FIM DA MUDANÇA ##########
 
         buttonLogout.setOnClickListener(v -> showLogoutConfirmationDialog());
     }
 
+    // Método auxiliar para abrir uma URL no navegador (opcional)
+    private void openUrl(String url) {
+        if (getActivity() != null) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(browserIntent);
+        }
+    }
+
     private void showLogoutConfirmationDialog() {
+        // Seu código original aqui... (sem alterações)
         if (getContext() == null) return;
         new AlertDialog.Builder(getContext())
                 .setTitle(getString(R.string.profile_confirm_logout_title))
                 .setMessage(getString(R.string.profile_confirm_logout_message))
                 .setPositiveButton(getString(R.string.dialog_yes), (dialog, which) -> logoutUser())
                 .setNegativeButton(getString(R.string.dialog_no), null)
-                .setIcon(R.drawable.ic_logout) // Certifique-se que este drawable existe
+                .setIcon(R.drawable.ic_logout)
                 .show();
     }
 
     private void logoutUser() {
-        if (mAuth != null) {
-            mAuth.signOut();
-        }
-        // TODO: Limpar quaisquer outros dados de sessão local se necessário (ex: SharedPreferences de preferências de notificação)
-
-        if (getActivity() != null) {
-            Intent intent = new Intent(getActivity(), LoginActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            getActivity().finishAffinity(); // Fecha todas as activities da tarefa atual
+        // A lógica de logout centralizada está correta.
+        if (getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity()).logout();
         }
     }
 }

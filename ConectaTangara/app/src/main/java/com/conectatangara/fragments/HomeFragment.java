@@ -116,41 +116,40 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        // A configuração da Toolbar foi REMOVIDA daqui
-        // Toolbar toolbar = view.findViewById(R.id.toolbar); // O ID 'toolbar' não existe mais em fragment_home.xml
-        // if (getActivity() instanceof AppCompatActivity) {
-        //     ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        //     if (((AppCompatActivity) getActivity()).getSupportActionBar() != null) {
-        //         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Conecta Tangará");
-        //     }
-        // }
-
         recyclerViewShortcuts = view.findViewById(R.id.recyclerViewShortcuts);
         recyclerViewShortcuts.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
         prepareShortcutData();
 
+        // ########## INÍCIO DA MUDANÇA ##########
         shortcutAdapter = new ShortcutAdapter(shortcutItems, shortcut -> {
-            Toast.makeText(getContext(), "Clicou em: " + shortcut.getTitle(), Toast.LENGTH_SHORT).show();
-            // TODO: Implementar a navegação real baseada no shortcut.getTitle()
-            // Exemplo: if (shortcut.getTitle().equals(getString(R.string.shortcut_title_register_occurrence))) {
-            //            startActivity(new Intent(getActivity(), ReportOccurrenceActivity.class));
-            //        }
-            // Ou usar o listener da BottomNav da MainActivity se o atalho for para uma aba principal
-            // if (getActivity() instanceof MainActivity) {
-            //    if (shortcut.getTitle().equals(getString(R.string.shortcut_title_my_occurrences))) {
-            //        ((MainActivity) getActivity()).navigateToMyOccurrences(); // Crie este método na MainActivity
-            //    }
-            // }
+            // Lógica de navegação implementada
+            String title = shortcut.getTitle();
+
+            if (title.equals(getString(R.string.shortcut_title_register_occurrence))) {
+                startActivity(new Intent(getActivity(), ReportOccurrenceActivity.class));
+            } else if (getActivity() instanceof MainActivity) {
+                MainActivity mainActivity = (MainActivity) getActivity();
+                if (title.equals(getString(R.string.shortcut_title_my_occurrences))) {
+                    mainActivity.navigateToBottomNavItem(R.id.nav_my_occurrences);
+                } else if (title.equals(getString(R.string.shortcut_title_view_occurrences))) {
+                    mainActivity.navigateToBottomNavItem(R.id.nav_public_map);
+                } else if (title.equals(getString(R.string.shortcut_title_public_data))) {
+                    mainActivity.navigateToBottomNavItem(R.id.nav_indicators);
+                } else {
+                    // Para os outros cards que ainda não têm destino
+                    Toast.makeText(getContext(), shortcut.getTitle() + ": Em desenvolvimento", Toast.LENGTH_SHORT).show();
+                }
+            }
         });
+        // ########## FIM DA MUDANÇA ##########
         recyclerViewShortcuts.setAdapter(shortcutAdapter);
 
         fabRegisterOccurrence = view.findViewById(R.id.fabRegisterOccurrence);
-        if (fabRegisterOccurrence.getDrawable() == null) { // Verifica se o src já não foi setado no XML
-            fabRegisterOccurrence.setImageResource(R.drawable.ic_add_fab); // Certifique-se que ic_add_fab existe
+        if (fabRegisterOccurrence.getDrawable() == null) {
+            fabRegisterOccurrence.setImageResource(R.drawable.ic_add_fab);
         }
         fabRegisterOccurrence.setOnClickListener(v -> {
-            // Navegar para a tela de registro de ocorrência
             Intent intent = new Intent(getActivity(), ReportOccurrenceActivity.class);
             startActivity(intent);
         });
@@ -161,17 +160,13 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        // Define o título na Toolbar da MainActivity quando este fragmento estiver visível
         if (getActivity() instanceof MainActivity) {
-            ((MainActivity) getActivity()).setToolbarTitle(getString(R.string.app_name)); // Ou um título específico para Home
+            ((MainActivity) getActivity()).setToolbarTitle(getString(R.string.app_name));
         }
     }
 
     private void prepareShortcutData() {
         shortcutItems = new ArrayList<>();
-        // IMPORTANTE: Certifique-se que estes drawables e strings existem!
-        // Os nomes de drawable aqui são placeholders, use os seus nomes reais.
-        // E os títulos devem vir de strings.xml para internacionalização.
         shortcutItems.add(new Shortcut(getString(R.string.shortcut_title_register_occurrence), R.drawable.ic_register_occurrences, R.color.red_pantone));
         shortcutItems.add(new Shortcut(getString(R.string.shortcut_title_my_occurrences), R.drawable.ic_my_occurrences, R.color.cerulean));
         shortcutItems.add(new Shortcut(getString(R.string.shortcut_title_view_occurrences), R.drawable.ic_view_occurrences, R.color.cerulean));
@@ -183,40 +178,36 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        // Limpa itens de menu anteriores que outros fragmentos possam ter adicionado.
-        menu.clear();
-        // Infla o menu específico deste fragmento, se houver.
-        // Ou adiciona programaticamente como você fez.
-        // Exemplo: inflater.inflate(R.menu.home_fragment_menu, menu);
-
-        // Seu código para adicionar itens de menu programaticamente:
-        // Certifique-se de ter res/values/ids.xml com action_profile e action_notifications
-        // <item name="action_profile" type="id" />
-        // <item name="action_notifications" type="id" />
-        MenuItem profileItem = menu.add(Menu.NONE, R.id.action_profile, 1, getString(R.string.menu_title_profile));
-        profileItem.setIcon(R.drawable.ic_profile); // Certifique-se que ic_profile existe
-        profileItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-
-        MenuItem notificationsItem = menu.add(Menu.NONE, R.id.action_notifications, 2, getString(R.string.menu_title_notifications));
-        notificationsItem.setIcon(R.drawable.ic_notifications); // Certifique-se que ic_notifications existe
-        notificationsItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-
+        // ########## INÍCIO DA MUDANÇA ##########
         super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.home_toolbar_menu, menu);
+        // ########## FIM DA MUDANÇA ##########
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // ########## INÍCIO DA MUDANÇA ##########
         int id = item.getItemId();
 
         if (id == R.id.action_profile) {
-            Toast.makeText(getContext(), "Perfil clicado", Toast.LENGTH_SHORT).show();
-            // TODO: Implementar navegação para a tela de Perfil
+            // Navega para o fragmento de perfil
+            if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).navigateToBottomNavItem(R.id.nav_profile);
+            }
             return true;
         } else if (id == R.id.action_notifications) {
             Toast.makeText(getContext(), "Notificações clicado", Toast.LENGTH_SHORT).show();
             // TODO: Implementar navegação para a tela de Notificações
             return true;
+        } else if (id == R.id.action_logout) {
+            // Chama o método de logout da MainActivity
+            if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).logout();
+            }
+            return true;
         }
         return super.onOptionsItemSelected(item);
+        // ########## FIM DA MUDANÇA ##########
     }
 }

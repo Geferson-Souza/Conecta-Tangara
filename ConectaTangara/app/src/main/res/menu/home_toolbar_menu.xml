@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Item para navegar para a tela de Perfil -->
+    <item
+            android:id="@+id/action_profile"
+            android:title="@string/menu_title_profile"
+            android:icon="@drawable/ic_profile"
+            app:showAsAction="ifRoom" />
+
+    <!-- Item para a tela de Notificações -->
+    <item
+            android:id="@+id/action_notifications"
+            android:title="@string/menu_title_notifications"
+            android:icon="@drawable/ic_notifications"
+            app:showAsAction="ifRoom" />
+
+    <!-- Item para fazer Logout. showAsAction="never" o coloca dentro do menu "três pontos" -->
+    <item
+            android:id="@+id/action_logout"
+            android:title="@string/menu_title_logout"
+            app:showAsAction="never" />
+
+</menu>

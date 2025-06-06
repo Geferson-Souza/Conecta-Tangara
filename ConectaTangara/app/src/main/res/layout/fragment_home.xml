@@ -10,8 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="8dp">
+            android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewShortcuts"
@@ -21,7 +20,13 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:listitem="@layout/item_shortcut_card" />
+                tools:listitem="@layout/item_shortcut_card"
+                android:clipToPadding="false"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="80dp"/> <!-- AJUSTE: Adicionado padding inferior -->
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -31,7 +36,8 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:backgroundTint="@color/red_pantone"
-            android:src="@drawable/ic_add_fab"
             app:tint="@color/white"
-            android:contentDescription="@string/fab_content_desc_register_occurrence" /> <!-- Usar string resource -->
+            android:src="@drawable/ic_add_fab"
+            android:contentDescription="@string/fab_content_desc_register_occurrence" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
