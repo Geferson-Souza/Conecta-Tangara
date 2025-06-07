@@ -31,7 +31,7 @@ public class OccurrencesMapFragment extends Fragment implements OnMapReadyCallba
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         // Infla o layout para este fragmento
-        return inflater.inflate(R.layout.fragment_public_occurrences, container, false);
+        return inflater.inflate(R.layout.fragment_occurrences_map, container, false);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class OccurrencesMapFragment extends Fragment implements OnMapReadyCallba
 
         // Obtém o SupportMapFragment e notifica quando o mapa estiver pronto para ser usado.
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
-                .findFragmentById(R.id.map_container); // Certifique-se que este ID existe em fragment_public_occurrences.xml
+                .findFragmentById(R.id.map_container); // Certifique-se que este ID existe em fragment_occurrences_map.xml
 
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);

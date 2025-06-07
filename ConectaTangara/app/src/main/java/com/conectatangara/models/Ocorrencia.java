@@ -25,6 +25,9 @@ public class Ocorrencia {
     private String atribuidoPara;
     private String resolucaoFuncionario;
 
+    // ########## CAMPO ADICIONADO ##########
+    private int apoios = 0; // Campo para contar os apoios
+
     public Ocorrencia() {
         this.mediaUrls = new ArrayList<>();
     }
@@ -41,10 +44,10 @@ public class Ocorrencia {
         this.localizacao = new GeoPoint(latitude, longitude);
         this.enderecoTexto = enderecoTexto;
         this.bairro = bairro;
-        // dataRegistro e dataUltimaAtualizacao são preenchidos por @ServerTimestamp
         this.mediaUrls = mediaUrls != null ? new ArrayList<>(mediaUrls) : new ArrayList<>();
         this.atribuidoPara = atribuidoPara;
         this.resolucaoFuncionario = resolucaoFuncionario;
+        this.apoios = 0; // Inicializa com 0
     }
 
     // Getters e Setters
@@ -89,4 +92,8 @@ public class Ocorrencia {
 
     public String getResolucaoFuncionario() { return resolucaoFuncionario; }
     public void setResolucaoFuncionario(String resolucaoFuncionario) { this.resolucaoFuncionario = resolucaoFuncionario; }
+
+    // ########## MÉTODOS ADICIONADOS ##########
+    public int getApoios() { return apoios; }
+    public void setApoios(int apoios) { this.apoios = apoios; }
 }

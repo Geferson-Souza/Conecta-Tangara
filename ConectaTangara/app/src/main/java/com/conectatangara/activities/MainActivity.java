@@ -2,9 +2,7 @@ package com.conectatangara.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -17,6 +15,7 @@ import com.conectatangara.fragments.IndicatorsFragment;
 import com.conectatangara.fragments.MyOccurrencesFragment;
 import com.conectatangara.fragments.OccurrencesMapFragment;
 import com.conectatangara.fragments.ProfileFragment;
+import com.conectatangara.fragments.PublicOccurrencesFragment; // IMPORTAR O NOVO FRAGMENTO
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -41,25 +40,20 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(navListener);
 
         if (savedInstanceState == null) {
-            loadFragment(new HomeFragment(), "HOME_FRAGMENT_TAG");
-            bottomNavigationView.setSelectedItemId(R.id.nav_home);
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setTitle(getString(R.string.app_name));
-            }
+            loadFragment(new HomeFragment(), "HOME_FRAGMENT_TAG", false);
         }
     }
 
     private final NavigationBarView.OnItemSelectedListener navListener =
             item -> {
                 Fragment selectedFragment = null;
-                String tag = null;
+                String tag = "";
                 String title = getString(R.string.app_name);
 
                 int itemId = item.getItemId();
                 if (itemId == R.id.nav_home) {
                     selectedFragment = findOrCreateFragment("HOME_FRAGMENT_TAG", HomeFragment.class);
                     tag = "HOME_FRAGMENT_TAG";
-                    title = getString(R.string.app_name);
                 } else if (itemId == R.id.nav_my_occurrences) {
                     selectedFragment = findOrCreateFragment("MY_OCCURRENCES_FRAGMENT_TAG", MyOccurrencesFragment.class);
                     tag = "MY_OCCURRENCES_FRAGMENT_TAG";
@@ -79,14 +73,20 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (selectedFragment != null) {
-                    loadFragment(selectedFragment, tag);
-                    if (getSupportActionBar() != null) {
-                        getSupportActionBar().setTitle(title);
-                    }
+                    navigateToPrimaryFragment(selectedFragment, tag);
+                    setToolbarTitle(title);
                     return true;
                 }
                 return false;
             };
+
+    // ########## MÉTODO DE NAVEGAÇÃO ATUALIZADO ##########
+    // Navega para um fragmento principal, limpando a pilha de retorno
+    private void navigateToPrimaryFragment(Fragment fragment, String tag) {
+        // Limpa a pilha de retorno para que as abas principais não se acumulem
+        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        loadFragment(fragment, tag, false); // Não adiciona à pilha
+    }
 
     private <T extends Fragment> T findOrCreateFragment(String tag, Class<T> fragmentClass) {
         FragmentManager fm = getSupportFragmentManager();
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         if (fragment == null) {
             try {
                 fragment = fragmentClass.newInstance();
-            } catch (IllegalAccessException | InstantiationException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 return null;
             }
@@ -102,12 +102,16 @@ public class MainActivity extends AppCompatActivity {
         return (T) fragment;
     }
 
-    private void loadFragment(Fragment fragment, String tag) {
+    // Método de carregamento de fragmentos agora aceita um booleano para o backstack
+    private void loadFragment(Fragment fragment, String tag, boolean addToBackStack) {
         if (fragment != null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fragment_container, fragment, tag)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                    .commit();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.main_fragment_container, fragment, tag);
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            if (addToBackStack) {
+                transaction.addToBackStack(tag); // Adiciona a transação à pilha de retorno
+            }
+            transaction.commit();
         }
     }
 
@@ -117,49 +121,46 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Navega para um item específico da BottomNavigationView.
-     */
     public void navigateToBottomNavItem(int itemId) {
         if (bottomNavigationView != null) {
             bottomNavigationView.setSelectedItemId(itemId);
         }
     }
 
-    /**
-     * Realiza o logout do usuário (Firebase e Google) e o redireciona para a tela de Login.
-     */
-    public void logout() {
-        // Logout do Firebase
-        FirebaseAuth.getInstance().signOut();
+    // ########## MÉTODO DE NAVEGAÇÃO ADICIONADO ##########
+    public void navigateToPublicOccurrences() {
+        // Carrega o fragmento e o adiciona à pilha de retorno
+        loadFragment(new PublicOccurrencesFragment(), "PUBLIC_OCCURRENCES_FRAGMENT", true);
+        setToolbarTitle(getString(R.string.toolbar_title_public_occurrences_list));
+    }
 
-        // Logout do Google Sign-In
+    public void logout() {
+        FirebaseAuth.getInstance().signOut();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(this, gso);
-        googleSignInClient.signOut().addOnCompleteListener(this, task -> {
-            // Navega para a tela de login após o logout de ambas as contas
-            navigateToLogin();
-        });
+        googleSignInClient.signOut().addOnCompleteListener(this, task -> navigateToLogin());
     }
 
     private void navigateToLogin() {
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }
 
-
     @Override
     public void onBackPressed() {
+        // Se houver algo na pilha de retorno, o botão voltar irá desempilhar
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
         } else if (bottomNavigationView.getSelectedItemId() != R.id.nav_home) {
+            // Se não, volta para a home
             bottomNavigationView.setSelectedItemId(R.id.nav_home);
         } else {
+            // Se já estiver na home, fecha o app
             super.onBackPressed();
         }
     }

@@ -16,11 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.conectatangara.R;
 import com.conectatangara.activities.MainActivity;
-import com.conectatangara.activities.OccurrenceDetailActivity; // Para abrir detalhes
-import com.conectatangara.adapters.MyOccurrenceAdapter;
+import com.conectatangara.activities.OccurrenceDetailActivity;
+import com.conectatangara.adapters.PublicOccurrenceAdapter;
 import com.conectatangara.models.Ocorrencia;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -28,24 +28,18 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyOccurrencesFragment extends Fragment implements MyOccurrenceAdapter.OnOccurrenceClickListener {
+public class PublicOccurrencesFragment extends Fragment implements PublicOccurrenceAdapter.OnOccurrenceClickListener {
 
-    private RecyclerView recyclerViewMyOccurrences;
-    private MyOccurrenceAdapter adapter;
+    private RecyclerView recyclerView;
+    private PublicOccurrenceAdapter adapter;
     private List<Ocorrencia> occurrenceList;
     private TextView tvEmptyList;
     private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
-
-    public MyOccurrencesFragment() {
-        // Construtor vazio
-    }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Renomeie seu layout para fragment_my_occurrences.xml se necessário
-        return inflater.inflate(R.layout.fragment_my_occurrences, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Use o layout que você renomeou. Se não renomeou, crie um novo com este nome.
+        return inflater.inflate(R.layout.fragment_public_occurrences, container, false);
     }
 
     @Override
@@ -53,42 +47,30 @@ public class MyOccurrencesFragment extends Fragment implements MyOccurrenceAdapt
         super.onViewCreated(view, savedInstanceState);
 
         db = FirebaseFirestore.getInstance();
-        mAuth = FirebaseAuth.getInstance();
-
-        recyclerViewMyOccurrences = view.findViewById(R.id.recyclerView_my_occurrences);
-        tvEmptyList = view.findViewById(R.id.tv_empty_my_occurrences);
+        recyclerView = view.findViewById(R.id.recyclerView_public_occurrences); // Use o ID do seu layout
+        tvEmptyList = view.findViewById(R.id.tv_empty_public_occurrences); // Use o ID do seu layout
 
         occurrenceList = new ArrayList<>();
         if (getContext() != null) {
-            // Reutilize o seu MyOccurrenceAdapter, ele deve funcionar bem
-            adapter = new MyOccurrenceAdapter(getContext(), occurrenceList, this);
-            recyclerViewMyOccurrences.setLayoutManager(new LinearLayoutManager(getContext()));
-            recyclerViewMyOccurrences.setAdapter(adapter);
+            adapter = new PublicOccurrenceAdapter(getContext(), occurrenceList, this);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerView.setAdapter(adapter);
         }
 
-        loadMyOccurrences();
+        loadPublicOccurrences();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         if (getActivity() instanceof MainActivity) {
-            ((MainActivity) getActivity()).setToolbarTitle(getString(R.string.toolbar_title_my_occurrences));
+            // Defina um título apropriado para a tela de ocorrências públicas
+            ((MainActivity) getActivity()).setToolbarTitle("Ocorrências Públicas");
         }
     }
 
-    private void loadMyOccurrences() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser == null) {
-            Toast.makeText(getContext(), "Usuário não autenticado.", Toast.LENGTH_SHORT).show();
-            showEmptyListMessage(true);
-            return;
-        }
-
-        String userId = currentUser.getUid();
-
+    private void loadPublicOccurrences() {
         db.collection("ocorrencias")
-                .whereEqualTo("userId", userId) // <<< A MUDANÇA PRINCIPAL ESTÁ AQUI
                 .orderBy("dataRegistro", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(task -> {
@@ -99,9 +81,7 @@ public class MyOccurrencesFragment extends Fragment implements MyOccurrenceAdapt
                             ocorrencia.setId(document.getId());
                             occurrenceList.add(ocorrencia);
                         }
-                        if (adapter != null) {
-                            adapter.setOccurrences(occurrenceList);
-                        }
+                        adapter.setOccurrences(occurrenceList);
                         showEmptyListMessage(occurrenceList.isEmpty());
                     } else {
                         Toast.makeText(getContext(), "Erro ao carregar ocorrências.", Toast.LENGTH_SHORT).show();
@@ -110,23 +90,33 @@ public class MyOccurrencesFragment extends Fragment implements MyOccurrenceAdapt
     }
 
     private void showEmptyListMessage(boolean show) {
-        if (getContext() == null) return;
         if (show) {
-            recyclerViewMyOccurrences.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.GONE);
             tvEmptyList.setVisibility(View.VISIBLE);
         } else {
-            recyclerViewMyOccurrences.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
             tvEmptyList.setVisibility(View.GONE);
         }
     }
 
     @Override
     public void onOccurrenceClick(Ocorrencia ocorrencia) {
-        if (getContext() == null) return;
-        // Navegar para a tela de detalhes ao clicar
+        // Abre a tela de detalhes da ocorrência
         Intent intent = new Intent(getActivity(), OccurrenceDetailActivity.class);
-        intent.putExtra("OCCURRENCE_ID", ocorrencia.getId()); // Passa o ID para a próxima tela
+        intent.putExtra("OCCURRENCE_ID", ocorrencia.getId());
         startActivity(intent);
     }
-}
 
+    @Override
+    public void onSupportClick(Ocorrencia ocorrencia) {
+        // Incrementa o contador de "apoios" no Firestore
+        DocumentReference occurrenceRef = db.collection("ocorrencias").document(ocorrencia.getId());
+        occurrenceRef.update("apoios", FieldValue.increment(1))
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(getContext(), "Ocorrência apoiada!", Toast.LENGTH_SHORT).show();
+                    // Para atualizar a contagem visualmente, você pode recarregar os dados
+                    loadPublicOccurrences();
+                })
+                .addOnFailureListener(e -> Toast.makeText(getContext(), "Erro ao apoiar.", Toast.LENGTH_SHORT).show());
+    }
+}

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+        <TextView
+                android:id="@+id/tv_item_occurrence_category"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/cerulean"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_item_occurrence_status"
+                tools:text="Buraco na Via"/>
+
+        <TextView
+                android:id="@+id/tv_item_occurrence_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:background="@drawable/status_background_placeholder"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Em Análise"/>
+
+        <TextView
+                android:id="@+id/tv_item_occurrence_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@color/berkeley_blue"
+                app:layout_constraintTop_toBottomOf="@id/tv_item_occurrence_category"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Buraco enorme na rua principal"/>
+
+        <TextView
+                android:id="@+id/tv_item_occurrence_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textAppearance="?attr/textAppearanceBody2"
+                app:layout_constraintTop_toBottomOf="@id/tv_item_occurrence_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Uma breve descrição da ocorrência apareceria aqui para dar um contexto ao usuário sobre o que está acontecendo."/>
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_item_support"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Apoiar"
+                app:icon="@drawable/ic_like"
+                app:iconGravity="textStart"
+                android:textColor="@color/cerulean"
+                app:layout_constraintTop_toBottomOf="@id/tv_item_occurrence_description"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+                android:id="@+id/tv_item_support_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textStyle="bold"
+                android:textColor="@color/cerulean"
+                app:layout_constraintBottom_toBottomOf="@id/button_item_support"
+                app:layout_constraintTop_toTopOf="@id/button_item_support"
+                app:layout_constraintStart_toEndOf="@id/button_item_support"
+                tools:text="123"/>
+
+        <TextView
+                android:id="@+id/tv_item_occurrence_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceBody2"
+                app:layout_constraintBottom_toBottomOf="@id/button_item_support"
+                app:layout_constraintTop_toTopOf="@id/button_item_support"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="06/06/2025"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
