@@ -3,24 +3,22 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/report_occurrence_root_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/honeydew"
         tools:context=".activities.ReportOccurrenceActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout_report"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar_report"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/cerulean"
                 app:title="@string/toolbar_title_report_occurrence"
-                app:titleTextColor="@color/white" />
+                app:navigationIcon="@drawable/ic_arrow_back"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -35,28 +33,13 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
+            <!-- CAMPO DE TÍTULO REMOVIDO -->
+
+            <!-- Descrição -->
             <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutOccurrenceTitle"
-                    style="@style/LoginTextInputLayoutStyle"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:hint="@string/hint_occurrence_title">
-
-                <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextOccurrenceTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textCapSentences"
-                        android:textColor="@color/berkeley_blue"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutOccurrenceDescription"
-                    style="@style/LoginTextInputLayoutStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
                     android:hint="@string/hint_occurrence_description">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -64,106 +47,92 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="top"
-                        android:inputType="textMultiLine|textCapSentences"
-                        android:minLines="4"
-                        android:maxLines="8"
-                        android:scrollbars="vertical"
-                        android:textColor="@color/berkeley_blue"/>
+                        android:inputType="textMultiLine"
+                        android:minLines="4"/>
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Categoria -->
             <TextView
+                    style="@style/TextAppearance.MaterialComponents.Body2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_occurrence_category"
-                    android:textColor="@color/berkeley_blue"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="4dp"/>
+                    android:layout_marginTop="16dp"
+                    android:text="@string/label_occurrence_category"/>
 
             <Spinner
                     android:id="@+id/spinnerOccurrenceCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:background="@drawable/spinner_background_outline"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
-                    android:layout_marginBottom="24dp"
-                    android:prompt="@string/prompt_select_category" />
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_background_light"
+                    android:padding="12dp"/>
 
+            <!-- Localização -->
             <TextView
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_occurrence_location"
-                    android:textColor="@color/berkeley_blue"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginTop="24dp"
+                    android:text="@string/label_occurrence_location"/>
 
             <Button
                     android:id="@+id/buttonUseCurrentLocation"
-                    style="@style/Widget.ConectaTangara.Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="@string/button_use_current_location"
-                    app:icon="@drawable/ic_my_location"
-                    app:iconTint="@color/white"
-                    android:layout_marginBottom="8dp"/>
+                    app:icon="@drawable/ic_my_location"/>
 
-            <ImageView
-                    android:id="@+id/imageViewMapPreview"
+            <!-- MAPVIEW SUBSTITUIU O IMAGEVIEW -->
+            <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:background="@color/non_photo_blue"
-                    android:scaleType="centerCrop"
-                    android:contentDescription="@string/map_preview_description"
-                    app:srcCompat="@drawable/ic_map_placeholder"
-                    android:layout_marginBottom="24dp"/>
+                    android:layout_height="200dp"
+                    android:layout_marginTop="8dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp">
 
+                <com.google.android.gms.maps.MapView
+                        android:id="@+id/mapViewPreview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Mídia -->
             <TextView
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_attach_media"
-                    android:textColor="@color/berkeley_blue"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginTop="24dp"
+                    android:text="@string/label_attach_media"/>
 
             <Button
                     android:id="@+id/buttonAddMedia"
-                    style="@style/Widget.ConectaTangara.Button.Secondary"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/button_add_media"
-                    app:icon="@drawable/ic_add_a_photo"
-                    app:iconTint="@color/cerulean"
-                    android:layout_gravity="start"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/button_add_media"/>
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewMediaPreviews"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:visibility="gone"
+                    tools:visibility="visible"
                     tools:listitem="@layout/item_media_preview_placeholder"
-                    tools:itemCount="3"
-                    android:minHeight="90dp"
-                    android:layout_marginBottom="24dp"/>
+                    tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
+            <!-- Botão de Envio -->
             <Button
                     android:id="@+id/buttonSubmitOccurrence"
-                    style="@style/Widget.ConectaTangara.Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/button_submit_occurrence"
-                    android:backgroundTint="@color/red_pantone"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:layout_marginTop="32dp"
+                    android:padding="12dp"
+                    android:text="@string/button_submit_occurrence"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
