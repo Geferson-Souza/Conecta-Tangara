@@ -9,17 +9,16 @@
         android:background="@color/honeydew"
         tools:context=".activities.ReportOccurrenceActivity">
 
+    <!-- AppBar e NestedScrollView sem alterações -->
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
         <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar_report"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="@string/toolbar_title_report_occurrence"
-                app:navigationIcon="@drawable/ic_arrow_back"/>
-
+                app:navigationIcon="@drawable/ic_arrow_back"
+                app:title="@string/toolbar_title_report_occurrence" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -33,22 +32,19 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-            <!-- CAMPO DE TÍTULO REMOVIDO -->
-
-            <!-- Descrição -->
+            <!-- Descrição (sem alterações) -->
             <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_occurrence_description">
-
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextOccurrenceDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="top"
                         android:inputType="textMultiLine"
-                        android:minLines="4"/>
+                        android:minLines="4" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Categoria -->
@@ -57,33 +53,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@string/label_occurrence_category"/>
+                    android:text="@string/label_occurrence_category" />
 
+            <!-- CORREÇÃO: Aumentado o tamanho do alvo de toque -->
             <Spinner
                     android:id="@+id/spinnerOccurrenceCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/edit_text_background_light"
-                    android:padding="12dp"/>
+                    android:padding="4dp"
+                    android:minHeight="48dp" />
 
-            <!-- Localização -->
+            <!-- Localização (sem alterações) -->
             <TextView
                     style="@style/TextAppearance.MaterialComponents.Headline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="@string/label_occurrence_location"/>
-
+                    android:text="@string/label_occurrence_location" />
             <Button
                     android:id="@+id/buttonUseCurrentLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/button_use_current_location"
-                    app:icon="@drawable/ic_my_location"/>
+                    app:icon="@drawable/ic_my_location" />
 
-            <!-- MAPVIEW SUBSTITUIU O IMAGEVIEW -->
             <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
@@ -91,48 +87,56 @@
                     app:cardCornerRadius="8dp"
                     app:cardElevation="4dp">
 
+                <!-- CORREÇÃO: Adicionada descrição de conteúdo para acessibilidade -->
                 <com.google.android.gms.maps.MapView
                         android:id="@+id/mapViewPreview"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/report_map_preview_description"/>
 
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Mídia -->
+            <!-- Mídia e botão de Envio (sem alterações) -->
             <TextView
                     style="@style/TextAppearance.MaterialComponents.Headline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="@string/label_attach_media"/>
-
+                    android:text="@string/label_attach_media" />
             <Button
                     android:id="@+id/buttonAddMedia"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/button_add_media"/>
-
+                    android:text="@string/button_add_media" />
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewMediaPreviews"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    tools:visibility="visible"
+                    tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_media_preview_placeholder"
-                    tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                    tools:visibility="visible" />
 
-            <!-- Botão de Envio -->
             <Button
                     android:id="@+id/buttonSubmitOccurrence"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:padding="12dp"
-                    android:text="@string/button_submit_occurrence"/>
+                    android:text="@string/button_submit_occurrence" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            tools:visibility="visible" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

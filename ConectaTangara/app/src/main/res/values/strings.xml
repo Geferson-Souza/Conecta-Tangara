@@ -156,6 +156,9 @@
     <string name="profile_confirm_logout_title">Confirmar Saída</string>
     <string name="profile_confirm_logout_message">Tem certeza que deseja sair da sua conta?</string>
 
+    <!-- Adicionado para ReportOccurrenceActivity -->
+    <string name="report_map_preview_description">Pré-visualização do mapa com a localização da ocorrência</string>
+
     <!-- TasksFragment (Tarefas Técnicas) -->
     <string name="toolbar_title_my_tasks">Minhas Tarefas</string>
     <string name="task_id_label">ID Tarefa:</string>
@@ -171,5 +174,8 @@
 
     <!-- String de placeholder genérica, verificar uso -->
     <string name="titulo_tela">Bem-vindo</string>
+    <string name="support_button">Apoiar</string>
+
+
 
 </resources>
