@@ -2,7 +2,9 @@ package com.conectatangara.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -42,6 +44,24 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             loadFragment(new HomeFragment(), "HOME_FRAGMENT_TAG", false);
         }
+
+        // Adiciona um listener para mostrar/esconder a seta de "voltar"
+        getSupportFragmentManager().addOnBackStackChangedListener(() -> {
+            boolean canGoBack = getSupportFragmentManager().getBackStackEntryCount() > 0;
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(canGoBack);
+            }
+        });
+    }
+
+    // Gerencia o clique na seta de "voltar" da toolbar
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private final NavigationBarView.OnItemSelectedListener navListener =
@@ -80,14 +100,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             };
 
-    // ########## MÉTODO DE NAVEGAÇÃO ATUALIZADO ##########
-    // Navega para um fragmento principal, limpando a pilha de retorno
-    private void navigateToPrimaryFragment(Fragment fragment, String tag) {
-        // Limpa a pilha de retorno para que as abas principais não se acumulem
-        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        loadFragment(fragment, tag, false); // Não adiciona à pilha
-    }
-
     private <T extends Fragment> T findOrCreateFragment(String tag, Class<T> fragmentClass) {
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentByTag(tag);
@@ -102,17 +114,21 @@ public class MainActivity extends AppCompatActivity {
         return (T) fragment;
     }
 
-    // Método de carregamento de fragmentos agora aceita um booleano para o backstack
     private void loadFragment(Fragment fragment, String tag, boolean addToBackStack) {
         if (fragment != null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.main_fragment_container, fragment, tag);
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             if (addToBackStack) {
-                transaction.addToBackStack(tag); // Adiciona a transação à pilha de retorno
+                transaction.addToBackStack(tag);
             }
             transaction.commit();
         }
+    }
+
+    private void navigateToPrimaryFragment(Fragment fragment, String tag) {
+        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        loadFragment(fragment, tag, false);
     }
 
     public void setToolbarTitle(String title) {
@@ -127,9 +143,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // ########## MÉTODO DE NAVEGAÇÃO ADICIONADO ##########
     public void navigateToPublicOccurrences() {
-        // Carrega o fragmento e o adiciona à pilha de retorno
         loadFragment(new PublicOccurrencesFragment(), "PUBLIC_OCCURRENCES_FRAGMENT", true);
         setToolbarTitle(getString(R.string.toolbar_title_public_occurrences_list));
     }
@@ -153,14 +167,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Se houver algo na pilha de retorno, o botão voltar irá desempilhar
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
         } else if (bottomNavigationView.getSelectedItemId() != R.id.nav_home) {
-            // Se não, volta para a home
             bottomNavigationView.setSelectedItemId(R.id.nav_home);
         } else {
-            // Se já estiver na home, fecha o app
             super.onBackPressed();
         }
     }

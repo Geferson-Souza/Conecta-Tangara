@@ -53,6 +53,7 @@ dependencies {
 
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-storage")
 
     // Firebase Google Login
     implementation("com.google.android.gms:play-services-auth:21.3.0") // Verifique a versão mais recente compatível
