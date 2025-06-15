@@ -1,3 +1,5 @@
-**/google-services.json
 /build
+# Google Services - MUITO IMPORTANTE
+google-services.json
 */google-services.json
+**/google-services.json
