@@ -1,12 +1,175 @@
 <resources>
-    <string name="app_name">Conecta Tangara</string>
+    <!-- Geral do Aplicativo -->
+    <string name="app_name">Conecta Tangará</string>
+    <string name="abreviacao_app_name">CT</string>
+    <string name="logo_conecta_tangara_description">Logo do Conecta Tangará</string>
+    <string name="dialog_yes">Sim</string>
+    <string name="dialog_no">Não</string>
+    <string name="popular_firestore">Popular Firestore (Debug)</string>
+
+    <!-- Tela de Splash -->
+    <!-- (Atualmente, seu activity_splash.xml usa app_name e abreviacao_app_name) -->
+
+    <!-- Telas de Onboarding -->
+    <string name="onboarding_title_1">Bem-vindo ao Conecta Tangará!</string>
+    <string name="onboarding_description_1">Sua voz conectada diretamente com a gestão da cidade.</string>
+    <string name="onboarding_image_desc_1">Ilustração da primeira tela de onboarding: cidadãos conectados.</string>
+    <string name="onboarding_title_2">Registre Ocorrências Facilmente</string>
+    <string name="onboarding_description_2">Reporte problemas de infraestrutura e serviços de forma fácil e rápida com fotos e localização.</string>
+    <string name="onboarding_image_desc_2">Ilustração da segunda tela de onboarding: registrando uma ocorrência no mapa.</string>
+    <string name="onboarding_title_3">Acompanhe e Participe Ativamente</string>
+    <string name="onboarding_description_3">Veja o andamento das solicitações, visualize indicadores e colabore para uma Tangará melhor.</string>
+    <string name="onboarding_button_next">Avançar</string>
+    <string name="onboarding_button_skip">Pular</string>
+    <string name="onboarding_button_finish">Concluir</string>
+
+    <!-- Tela de Login -->
     <string name="login_button">Entrar</string>
     <string name="register_button">Cadastrar</string>
     <string name="email_hint">Digite seu email</string>
-    <string name="password_hint">Digite sua Senha</string>
-    <string name="titulo_tela">Bem-vindo</string>
-    <string name="default_web_client_id">SEU_CLIENT_ID</string>
-    <string name="popular_firestore">Popular Firestore</string>
+    <string name="password_hint">Digite sua senha</string>
     <string name="login_com_google">Login com Google</string>
-    <string name="abreviacao_app_name">CT</string>
+    <string name="default_web_client_id" translatable="false">401092890842-da8rdtqleolerutk477qe77olldk2j5s.apps.googleusercontent.com</string>
+
+    <!-- MainActivity e Navegação Principal (BottomNavigationView) -->
+    <string name="nav_title_home">Início</string>
+    <string name="nav_title_my_occurrences">Minhas Ocorrências</string>
+    <string name="nav_title_indicators">Indicadores</string>
+    <string name="nav_title_public_map">Mapa Público</string>
+    <string name="nav_title_profile">Perfil</string>
+
+    <!-- HomeFragment (Tela Principal Pós-Login) -->
+    <string name="toolbar_title_home">Conecta Tangará</string>
+    <string name="fab_content_desc_register_occurrence">Registrar Nova Ocorrência</string>
+    <string name="shortcut_title_register_occurrence">Registrar Ocorrência</string>
+    <string name="shortcut_title_my_occurrences">Minhas Ocorrências</string>
+    <string name="shortcut_title_view_occurrences">Ver Ocorrências no Mapa</string>
+    <string name="shortcut_title_services">Serviços Municipais</string>
+    <string name="shortcut_title_events">Eventos da Cidade</string>
+    <string name="shortcut_title_public_occurrences">Ocorrências Públicas</string> <!-- ADICIONADO -->
+    <string name="shortcut_title_news">Notícias e Avisos</string>
+    <string name="shortcut_title_public_data">Indicadores Públicos</string>
+    <string name="menu_title_profile">Meu Perfil</string>
+    <string name="menu_title_notifications">Notificações</string>
+    <string name="menu_title_logout">Sair</string>
+    <string name="shortcut_icon_description_placeholder">Ícone do atalho</string>
+    <string name="tools_text_shortcut_title">Título do Atalho</string>
+
+
+    <!-- ReportOccurrenceActivity (Registrar Ocorrência) -->
+    <string name="toolbar_title_report_occurrence">Registrar Ocorrência</string>
+    <string name="hint_occurrence_title">Título da Ocorrência</string>
+    <string name="hint_occurrence_description">Descrição Detalhada (o que, onde, quando)</string>
+    <string name="label_occurrence_category">Categoria da Ocorrência:</string>
+    <string name="prompt_select_category">Selecione uma categoria</string>
+    <string-array name="occurrence_categories">
+        <item>@string/prompt_select_category</item>
+        <item>Buraco na Via</item>
+        <item>Lâmpada Queimada/Defeito na Iluminação</item>
+        <item>Lixo Acumulado/Problema na Coleta</item>
+        <item>Vazamento de Água ou Esgoto</item>
+        <item>Semáforo com Defeito/Problema de Sinalização</item>
+        <item>Calçada Irregular ou Obstruída</item>
+        <item>Problema em Ponto de Ônibus</item>
+        <item>Problema no Transporte Público</item>
+        <item>Falta de Medicamentos/Problema em Posto de Saúde</item>
+        <item>Outros Assuntos</item>
+    </string-array>
+    <string name="label_occurrence_location">Localização da Ocorrência</string>
+    <string name="button_use_current_location">Usar Localização Atual</string>
+    <string name="map_preview_description">Pré-visualização do mapa da ocorrência</string>
+    <string name="label_attach_media">Anexar Fotos/Vídeos (Opcional)</string>
+    <string name="button_add_media">Adicionar Mídia</string>
+    <string name="media_preview_item_description">Pré-visualização de mídia anexada</string>
+    <string name="remove_selected_media_description">Remover mídia selecionada</string>
+    <string name="button_submit_occurrence">Registrar Ocorrência</string>
+    <string name="message_fill_required_fields">Por favor, preencha todos os campos obrigatórios.</string>
+    <string name="message_define_location">Por favor, defina a localização da ocorrência.</string>
+    <string name="message_location_permission_denied">Permissão de localização negada.</string>
+    <string name="message_location_updated">Localização atualizada.</string>
+    <string name="message_location_not_found">Não foi possível obter a localização atual. Verifique se o GPS está ativo e tente novamente.</string>
+    <string name="message_location_error">Erro ao obter localização: %1$s</string>
+    <string name="message_media_added">Mídia adicionada.</string>
+    <string name="message_image_captured">Imagem capturada!</string>
+    <string name="message_no_camera_app">Nenhum aplicativo de câmera encontrado.</string>
+    <string name="message_occurrence_submitted">Ocorrência registrada com sucesso!</string>
+
+    <!-- OccurrenceDetailActivity (Detalhes da Ocorrência) -->
+    <string name="toolbar_title_occurrence_detail">Detalhes da Ocorrência</string>
+
+    <!-- MyOccurrencesFragment (Minhas Ocorrências) -->
+    <string name="toolbar_title_my_occurrences">Minhas Ocorrências</string>
+    <string name="my_occurrences_empty_list">Você ainda não registrou nenhuma ocorrência.</string>
+    <string name="occurrence_status_placeholder">Status</string>
+    <string name="occurrence_category_placeholder">Categoria</string>
+    <string name="occurrence_date_placeholder">dd/mm/aaaa</string>
+    <string name="occurrence_title_placeholder">Título da Ocorrência Aqui</string>
+    <string name="occurrence_description_placeholder">Breve descrição da ocorrência apareceria aqui...</string>
+    <string name="status_label_recebida">Recebida</string>
+    <string name="status_label_em_analise">Em Análise</string>
+    <string name="status_label_em_andamento">Em Andamento</string>
+    <string name="status_label_resolvida">Resolvida</string>
+    <string name="status_label_rejeitada">Rejeitada</string>
+
+    <!-- PublicOccurrencesFragment (Ocorrências Públicas) -->
+    <string name="toolbar_title_public_occurrences_list">Ocorrências Públicas</string> <!-- ADICIONADO -->
+
+    <!-- IndicatorsFragment (Indicadores) -->
+    <string name="toolbar_title_indicators">Indicadores</string>
+    <string name="indicators_empty_list">Nenhum indicador encontrado para os filtros selecionados.</string>
+    <string name="filter_label_bairro">Bairro</string>
+    <string name="filter_label_tema">Tema</string>
+    <string name="filter_label_periodo">Período</string>
+    <string name="indicator_name_placeholder">Nome do Indicador</string>
+    <string name="indicator_value_placeholder">100%</string>
+    <string name="indicator_source_period_placeholder">Fonte: Exemplo | Período: Ano</string>
+    <string name="chart_placeholder_text">[Espaço para Gráfico]</string>
+
+
+    <!-- OccurrencesMapFragment (Mapa Público de Ocorrências) -->
+    <string name="toolbar_title_public_occurrences">Mapa de Ocorrências</string>
+    <string name="filter_map_label">Filtrar por:</string>
+    <string name="chip_status_new">Novas</string>
+    <string name="chip_status_in_progress">Em Andamento</string>
+    <string name="chip_status_resolved">Resolvidas</string>
+    <string name="prompt_occurrence_type_map">Tipo de Ocorrência</string>
+    <string name="filter_label_category_map">Categoria:</string>
+
+
+    <!-- ProfileFragment (Perfil e Configurações) -->
+    <string name="toolbar_title_profile">Meu Perfil</string>
+    <string name="profile_user_avatar_description">Avatar do usuário</string>
+    <string name="profile_edit_profile">Editar Perfil</string>
+    <string name="profile_change_password">Alterar Senha</string>
+    <string name="profile_my_occurrences_shortcut">Minhas Ocorrências</string>
+    <string name="profile_section_account">Conta</string>
+    <string name="profile_section_settings">Configurações</string>
+    <string name="profile_setting_notifications_general">Receber notificações gerais</string>
+    <string name="profile_setting_notifications_status_updates">Notificações de atualizações de status</string>
+    <string name="profile_section_information">Informações</string>
+    <string name="profile_about_app">Sobre o App</string>
+    <string name="profile_terms_of_use">Termos de Uso</string>
+    <string name="profile_privacy_policy">Política de Privacidade</string>
+    <string name="profile_logout">Sair</string>
+    <string name="profile_user_name_placeholder">Nome do Usuário</string>
+    <string name="profile_user_email_placeholder">usuario@email.com</string>
+    <string name="profile_confirm_logout_title">Confirmar Saída</string>
+    <string name="profile_confirm_logout_message">Tem certeza que deseja sair da sua conta?</string>
+
+    <!-- TasksFragment (Tarefas Técnicas) -->
+    <string name="toolbar_title_my_tasks">Minhas Tarefas</string>
+    <string name="task_id_label">ID Tarefa:</string>
+    <string name="task_category_label">Categoria:</string>
+    <string name="task_address_label">Endereço:</string>
+    <string name="task_deadline_label">Prazo:</string>
+    <string name="task_status_placeholder">Status da Tarefa</string>
+    <string name="task_action_details">Ver Detalhes</string>
+    <string name="task_action_update_status">Atualizar Status</string>
+    <string name="my_tasks_empty_list">Você não possui tarefas atribuídas no momento.</string>
+    <string name="menu_title_filter">Filtrar</string>
+    <string name="filter_label_status_task">Filtrar por Status da Tarefa</string>
+
+    <!-- String de placeholder genérica, verificar uso -->
+    <string name="titulo_tela">Bem-vindo</string>
+
 </resources>

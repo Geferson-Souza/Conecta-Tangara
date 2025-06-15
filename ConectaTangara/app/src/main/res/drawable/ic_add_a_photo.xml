@@ -1,0 +1,13 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="24dp"
+        android:height="24dp"
+        android:viewportWidth="24"
+        android:viewportHeight="24">
+  <!-- O atributo android:tint na tag <vector> é opcional aqui,
+       já que estamos definindo a cor de preenchimento diretamente no path.
+       Mas se você quiser uma cor de fallback caso o path não tenha fillColor,
+       poderia adicionar: android:tint="@color/cerulean" -->
+
+  <path
+          android:pathData="M15,3a2,2 0,0 1,1.995 1.85L17,5a1,1 0,0 0,0.883 0.993L18,6h1a3,3 0,0 1,2.995 2.824L22,9v10a3,3 0,0 1,-2.824 2.995L19,22H5a3,3 0,0 1,-2.995 -2.824L2,19V9a3,3 0,0 1,2.824 -2.995L5,6h1a1,1 0,0 0,0.993 -0.883L7,5a2,2 0,0 1,1.85 -1.995L9,3h6Zm0,2H9a1,1 0,0 0,-0.993 0.883L8,6v3H5v10h14V9h-3a1,1 0,0 0,-0.993 -0.883L16,8V6a1,1 0,0 0,-0.883 -0.993L15,5Zm-2,4a4,4 0,1 1,0 8a4,4 0,0 1,0 -8Zm0,2a2,2 0,1 0,0 4a2,2 0,0 0,0 -4ZM7,4V1H5V4H2V6H5V9H7V6H10V4H7Z"
+          android:fillColor="@color/cerulean" /> </vector>

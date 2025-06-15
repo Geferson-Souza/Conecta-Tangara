@@ -4,7 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="Conecta_Tangara.app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-05-21T05:29:59.891627400Z">
+        <DropdownSelection timestamp="2025-06-01T05:11:05.651447800Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\usuario\.android\avd\Small_Phone.avd" />
@@ -12,6 +12,9 @@
           </Target>
         </DropdownSelection>
         <DialogSelection />
+      </SelectionState>
+      <SelectionState runConfigName="Conecta Tangara.Conecta_Tangara.app">
+        <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
   </component>

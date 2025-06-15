@@ -8,4 +8,17 @@
     <color name="slightly_lighter_berkeley_blue">#264065</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="green_status">#ED4AC157</color>
+    <color name="gradientstart">#A8DADC</color>
+    <color name="gradientmiddle">#F1FAEE</color>
+    <color name="gradientend">#457B9D</color>
+
+    <color name="status_em_andamento_yellow">#FFC107</color>
+    <color name="status_resolvida_green">#2ECC71</color>
+    <color name="text_secondary_default">#757575</color> <!-- As cores para os outros status usarão suas cores existentes:
+         - Recebida: @color/non_photo_blue
+         - Em Análise: @color/cerulean
+         - Rejeitada: @color/red_pantone
+    -->
 </resources>
+

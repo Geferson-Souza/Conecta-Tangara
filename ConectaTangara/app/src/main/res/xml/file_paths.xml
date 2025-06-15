@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+        Define os caminhos que o FileProvider pode compartilhar.
+        - 'external-files-path' refere-se aos diretórios específicos do app no armazenamento externo
+          (ex: getExternalFilesDir()).
+        - name="my_images" é um nome lógico para este caminho.
+        - path="Pictures" refere-se ao subdiretório "Pictures" dentro do getExternalFilesDir().
+          Se você salva imagens diretamente no getExternalFilesDir(), use path="."
+    -->
+    <external-files-path
+            name="my_images"
+            path="Pictures" />
+    <!-- Você pode adicionar outros caminhos aqui, se necessário -->
+    <!-- Exemplo para o cache externo:
+    <external-cache-path
+        name="my_cached_images"
+        path="image_cache" />
+    -->
+</paths>

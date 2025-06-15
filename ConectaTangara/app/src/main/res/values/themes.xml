@@ -14,7 +14,6 @@
         <item name="colorError">@color/red_pantone</item>
         <item name="colorOnError">@color/white</item>
         <item name="materialButtonStyle">@style/Widget.ConectaTangara.Button</item>
-
     </style>
 
     <style name="Widget.ConectaTangara.Button" parent="Widget.Material3.Button">
@@ -23,7 +22,8 @@
         <item name="cornerRadius">24dp</item>
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
-        <item name="android:elevation">2dp</item> </style>
+        <item name="android:elevation">2dp</item>
+    </style>
 
     <style name="Widget.ConectaTangara.Button.Secondary" parent="Widget.Material3.Button.OutlinedButton">
         <item name="strokeColor">@color/cerulean</item>
@@ -41,4 +41,49 @@
         <item name="endIconTint">@color/cerulean</item>
     </style>
 
+    <style name="Theme.ConectaTangara.NoActionBar" parent="Theme.ConectaTangara">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.ConectaTangara.FullScreen" parent="Theme.ConectaTangara.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="ProfileSectionHeader" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceSubtitle1</item>
+        <item name="android:textColor">@color/berkeley_blue</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ProfileMenuItem" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:drawablePadding">16dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
+        <item name="android:textColor">@color/berkeley_blue</item>
+        <item name="drawableTint">@color/cerulean</item> </style>
+
+    <style name="ProfileSwitchItem" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
+        <item name="android:textColor">@color/berkeley_blue</item>
+    </style>
 </resources>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp">
+
+        <View
+                android:id="@+id/view_task_status_indicator"
+                android:layout_width="6dp"
+                android:layout_height="0dp"
+                android:background="@color/slightly_lighter_berkeley_blue"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:background="@color/status_em_andamento_yellow"/>
+
+        <TextView
+                android:id="@+id/tv_task_id_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/task_id_label"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/berkeley_blue"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/view_task_status_indicator"/>
+
+        <TextView
+                android:id="@+id/tv_task_id_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/cerulean"
+                app:layout_constraintStart_toEndOf="@id/tv_task_id_label"
+                app:layout_constraintTop_toTopOf="@id/tv_task_id_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="OCCO-10235"/>
+
+        <TextView
+                android:id="@+id/tv_task_category_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/task_category_label"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textStyle="bold"
+                android:textColor="@color/berkeley_blue"
+                app:layout_constraintTop_toBottomOf="@id/tv_task_id_label"
+                app:layout_constraintStart_toStartOf="@id/tv_task_id_label"/>
+
+        <TextView
+                android:id="@+id/tv_task_category_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="@color/cerulean"
+                app:layout_constraintStart_toEndOf="@id/tv_task_category_label"
+                app:layout_constraintTop_toTopOf="@id/tv_task_category_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Buraco na Via"/>
+
+        <TextView
+                android:id="@+id/tv_task_address_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/task_address_label"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textStyle="bold"
+                android:textColor="@color/berkeley_blue"
+                app:layout_constraintTop_toBottomOf="@id/tv_task_category_label"
+                app:layout_constraintStart_toStartOf="@id/tv_task_category_label"/>
+
+        <TextView
+                android:id="@+id/tv_task_address_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="@color/cerulean"
+                android:maxLines="2"
+                android:ellipsize="end"
+                app:layout_constraintStart_toEndOf="@id/tv_task_address_label"
+                app:layout_constraintTop_toTopOf="@id/tv_task_address_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Rua das Palmeiras, 123, Centro"/>
+
+        <TextView
+                android:id="@+id/tv_task_deadline_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/task_deadline_label"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textStyle="bold"
+                android:textColor="@color/berkeley_blue"
+                app:layout_constraintTop_toBottomOf="@id/tv_task_address_value"
+                app:layout_constraintStart_toStartOf="@id/tv_task_address_label"/>
+
+        <TextView
+                android:id="@+id/tv_task_deadline_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/red_pantone"
+                app:layout_constraintStart_toEndOf="@id/tv_task_deadline_label"
+                app:layout_constraintTop_toTopOf="@id/tv_task_deadline_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="25/12/2024"/>
+
+        <LinearLayout
+                android:id="@+id/layout_task_actions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_task_deadline_label"
+                app:layout_constraintStart_toStartOf="@id/tv_task_deadline_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_task_details"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/task_action_details"
+                    android:textColor="@color/cerulean"
+                    android:layout_marginEnd="8dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_task_update_status"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/task_action_update_status"
+                    app:strokeColor="@color/cerulean"
+                    android:textColor="@color/cerulean"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
+    

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/honeydew"
+        tools:context=".fragments.MyOccurrencesFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_my_occurrences"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:clipToPadding="false"
+            tools:listitem="@layout/list_item_my_occurrence"
+            tools:itemCount="5"/>
+    <TextView
+            android:id="@+id/tv_empty_my_occurrences"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Você ainda não registrou nenhuma ocorrência."
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textColor="@color/text_secondary_default"
+            android:visibility="gone"
+            app:layout_anchor="@id/recyclerView_my_occurrences"
+            app:layout_anchorGravity="center"
+            tools:visibility="visible"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

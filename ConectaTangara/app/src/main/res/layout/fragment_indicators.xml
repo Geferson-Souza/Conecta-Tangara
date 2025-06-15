@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/honeydew"
+        android:padding="8dp"
+        tools:context=".fragments.IndicatorsFragment">
+
+    <LinearLayout
+            android:id="@+id/layout_filters"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        <Spinner
+                android:id="@+id/spinner_bairro"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/spinner_background_outline"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:minHeight="48dp"
+                tools:prompt="Bairro" />
+
+        <Spinner
+                android:id="@+id/spinner_tema"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/spinner_background_outline"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:minHeight="48dp"
+                tools:prompt="Tema" />
+
+        <Spinner
+                android:id="@+id/spinner_periodo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/spinner_background_outline"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:minHeight="48dp"
+                tools:prompt="Período" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_indicators"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:clipToPadding="false"
+            app:layout_constraintTop_toBottomOf="@+id/layout_filters"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:listitem="@layout/list_item_indicator_with_chart"
+            tools:itemCount="3" />
+
+    <TextView
+            android:id="@+id/tv_empty_indicators_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nenhum indicador encontrado para os filtros selecionados."
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textColor="@color/text_secondary_default"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/layout_filters"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            tools:visibility="visible"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

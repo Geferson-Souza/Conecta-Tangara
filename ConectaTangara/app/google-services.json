@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "401092890842",
+    "firebase_url": "https://conecta-tangara-2025-default-rtdb.firebaseio.com",
+    "project_id": "conecta-tangara-2025",
+    "storage_bucket": "conecta-tangara-2025.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401092890842:android:1afac6ea7913d045b495e3",
+        "android_client_info": {
+          "package_name": "com.conectatangara"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401092890842-jig8vjlcqoddj95ausvlch42g9lj333l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.conectatangara",
+            "certificate_hash": "6e490bbc5b3ca1aaa44cb8e706fc9e4e04e68206"
+          }
+        },
+        {
+          "client_id": "401092890842-da8rdtqleolerutk477qe77olldk2j5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8v51dekADoKtFnfG3y9pt3pvasq09IFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401092890842-da8rdtqleolerutk477qe77olldk2j5s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
