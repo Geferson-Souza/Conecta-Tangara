@@ -26,6 +26,7 @@ local.properties
 # Google Services - MUITO IMPORTANTE
 google-services.json
 */google-services.json
+**/google-services.json
 
 # Arquivos gerados
 *.apk
